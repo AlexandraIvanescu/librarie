@@ -1,3 +1,291 @@
 @import "components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "components/bootstrap-sass/assets/stylesheets/bootstrap/theme";
 @import "components/angular-material/angular-material.scss";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility: hidden;
+}
+
+.ng-anchor {
+  position: absolute;
+}
+
+html, body, .body-background {
+  background-color: #EFEFEF !important;
+}
+
+.img-size,
+.size-full {
+  height: 100%;
+  width: 100%;
+}
+
+.login-container {
+  margin-top: 50px;
+}
+
+.login {
+  width: 90%;
+  border: 3px;
+  border-style: solid;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
+
+.login-body {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.login-header {
+  color: white;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 20px;
+}
+
+.login-footer {
+  padding-bottom: 20px;
+  font-size: 15px;
+}
+
+.login-input md-input-container {
+  width: 100%;
+  font-size: 15px;
+}
+
+.login-alert {
+  color: red;
+}
+
+.logo {
+  font-size: 33px;
+  padding-left: 30px;
+  padding-right: 50px;
+  padding-top: 5px;
+  background-color: white;
+}
+
+div.nav-item {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  color: white !important;
+}
+
+div.nav-item md-icon {
+  color: white !important;
+}
+
+span.nav-caption {
+  display: block;
+}
+
+.md-nav-bar {
+  height: 60px !important;
+}
+
+.view {
+  height: 100%;
+}
+
+.user-menu {
+  padding: 15px;
+  margin-top: -10px;
+  margin-right: -5px;
+  padding-right: 30px;
+  color: white;
+}
+
+.user-name {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.user-img-menu {
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid #FFFFFF;
+}
+
+$employer-color: #3063A5;
+$employer-post0: #ffff8d;
+$employer-post1: #b9f6ca;
+$employer-post2: #ff8a80;
+
+.employer-login {
+  @extend .login;
+  border-color: $employer-color;
+}
+
+.employer-logo {
+  @extend .logo;
+  color: $employer-color;
+}
+
+.employer-login-header {
+  @extend .login-header;
+  background-color: $employer-color;
+}
+
+.md-button.md-primary.md-raised.employer-btn {
+  background-color: $employer-color;
+}
+
+.nav-bar-employer > .md-nav-bar,
+.new-post-toolbar,
+.change-post-toolbar {
+  background-color: $employer-color !important;
+}
+
+.new-post,
+.change-post,
+.delete-post {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+  0 13px 19px 2px rgba(0, 0, 0, 0.14),
+  0 5px 24px 4px rgba(0, 0, 0, 0.12);
+  width: 500px;
+}
+
+.new-post-container,
+.change-post-container {
+  width: 100%;
+  padding: 15px;
+}
+
+.new-post-label,
+.change-post-label {
+  width: 100%;
+}
+
+.new-post-map,
+.change-post-map {
+  height: 300px;
+  width: 100%;
+}
+
+.post0 {
+  background-color: $employer-post0;
+  height: 300px;
+}
+
+.post1, .post3 {
+  background-color: $employer-post1;
+  height: 300px;
+}
+
+.post2 {
+  background-color: $employer-post2;
+  height: 300px;
+}
+
+div.home-employer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.post-details {
+  height: 350px;
+}
+
+.post-details-card {
+  height: 100%;
+}
+
+.map-margin {
+  margin-top: 8px;
+}
+
+.applications {
+  padding-left: 8px;
+}
+
+.applications md-toolbar,
+.reviews md-toolbar,
+.change md-toolbar {
+  background-color: $employer-color !important;
+  color: white;
+}
+
+.applications md-toolbar {
+  margin-top: 30px;
+}
+
+.reviews {
+  margin-top: 10px;
+}
+
+.md-list-item-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.approve-button:hover > md-icon,
+.checkmark1 > md-icon {
+  color: green;
+}
+
+.delete-button:hover > md-icon,
+.cross2 > md-icon {
+  color: red;
+}
+
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+
+  .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .05em .05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+
+    &.filled {
+      color: #fd0;
+    }
+  }
+
+  &.readonly .star.filled {
+    color: #fd0;
+  }
+}
+
+.btn-pay,
+.btn-pay:hover {
+  color: #fff !important;
+  background-color: #419641;
+  border-color: #5cb85c;
+}
+
+#container,
+#container1 {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.employee-picture {
+  height: 100px;
+  margin: 20px;
+}

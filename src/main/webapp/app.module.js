@@ -7,5 +7,8 @@ angular.module('libraryApp', ['ngRoute',
                               'ngMaterial',
                               'ngMessages',
                               'http-auth-interceptor',
-                              'bookList']);
+                              'bookList',
+                              'login',
+                              'error',
+                              'loading']);
 
