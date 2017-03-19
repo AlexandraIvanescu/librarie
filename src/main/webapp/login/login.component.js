@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('login').component('login', {
+angular.module('libraryApp').component('login', {
     templateUrl: 'login/login.template.html',
     controller: ['$scope', '$rootScope', '$http', '$location', 'UserAuthSharedService', 'AdminAuthSharedService',
         function LoginController($scope, $rootScope, $http, $location, UserAuthSharedService, AdminAuthSharedService){
@@ -12,7 +12,7 @@ angular.module('login').component('login', {
 
             $scope.userLogin = function () {
                 $rootScope.userAuthenticationError = false;
-                userAuthSharedService.login($scope.user.email, $scope.user.password);
+                UserAuthSharedService.login($scope.user.email, $scope.user.password);
             };
 
             $scope.adminLogin = function () {

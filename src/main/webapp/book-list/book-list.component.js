@@ -4,7 +4,7 @@
 'use strict';
 
 
-angular.module('bookList').component('bookList', {
+angular.module('libraryApp').component('bookList', {
     templateUrl: 'book-list/book-list.template.html',
     controller: ['Book',
         function BookListController(Book) {

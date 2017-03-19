@@ -1,7 +1,7 @@
 /**
  * Created by Alexandra Ale on 12.03.2017.
  */
-angular.module('libraryApp').service('UserSession', function () {
+angular.module('libraryApp').service('AdminSession', function () {
 
     this.create = function (data) {
         this.adminId = data.adminId;

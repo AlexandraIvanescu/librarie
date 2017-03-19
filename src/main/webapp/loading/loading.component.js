@@ -4,6 +4,6 @@
 'use strict';
 
 
-angular.module('loading').component('loading', {
+angular.module('libraryApp').component('loading', {
     templateUrl: 'loading/loading.template.html'
 });

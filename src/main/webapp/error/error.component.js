@@ -4,7 +4,7 @@
 'use strict';
 
 
-angular.module('error').component('error', {
+angular.module('libraryApp').component('error', {
     templateUrl: 'error/error.template.html',
     controller: ['$scope', '$routeParams',
         function ErrorController($scope, $routeParams) {

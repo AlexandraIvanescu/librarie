@@ -3,12 +3,10 @@
  */
 'use strict';
 angular.module('libraryApp', ['ngRoute',
-                              'ngAnimate',
-                              'ngMaterial',
-                              'ngMessages',
-                              'http-auth-interceptor',
-                              'bookList',
-                              'login',
-                              'error',
-                              'loading']);
+    'ngAnimate',
+    'ngMaterial',
+    'ngMessages',
+    'http-auth-interceptor',
+    'ngResource',
+    'LocalStorageModule']);
 

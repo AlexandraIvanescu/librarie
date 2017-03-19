@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('bookList').factory('Book', ['$resource',
+angular.module('libraryApp').factory('Book', ['$resource',
     function ($resource) {
         return $resource('librarie/get/books', {}, {
             query: {
