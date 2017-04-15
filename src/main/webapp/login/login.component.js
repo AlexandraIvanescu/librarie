@@ -5,24 +5,19 @@
 
 angular.module('libraryApp').component('login', {
     templateUrl: 'login/login.template.html',
-    controller: ['$scope', '$rootScope', '$http', '$location', 'UserAuthSharedService', 'AdminAuthSharedService',
-        function LoginController($scope, $rootScope, $http, $location, UserAuthSharedService, AdminAuthSharedService){
+    controller: ['$scope', '$rootScope', '$http', '$location', 'UserAuthSharedService',
+        function LoginController($scope, $rootScope, $http, $location, UserAuthSharedService) {
             $scope.user = {};
-            $scope.admin = {};
 
             $scope.userLogin = function () {
                 $rootScope.userAuthenticationError = false;
                 UserAuthSharedService.login($scope.user.email, $scope.user.password);
             };
 
-            $scope.adminLogin = function () {
-                $rootScope.adminAuthenticationError = false;
-                AdminAuthSharedService.login($scope.admin.email, $scope.admin.password);
-            };
-
             $scope.navigateTo = function (newPath) {
                 $location.path(newPath).replace();
             };
 
-        }]});
+        }]
+});
 

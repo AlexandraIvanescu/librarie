@@ -30,36 +30,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 login-container">
-            <div class="employee-login">
-                <div class="text-center employee-login-header">Admin</div>
-                <div class="login-body">
-                    <form role="form" ng-submit="adminLogin()">
-                        <div class="login-input">
-                            <md-input-container>
-                                <label for="adminEmail">Email</label>
-                                <input id="adminEmail" ng-model="admin.email" type="email" required>
-                                <span ng-show="adminAuthenticationError" class="help-block login-alert">
-                                    Please check your credentials and try again.
-                                </span>
-                            </md-input-container>
-                        </div>
-                        <div class="login-input">
-                            <md-input-container>
-                                <label for="adminPassword">Password</label>
-                                <input id="adminPassword" ng-model="admin.password" type="password" required>
-                            </md-input-container>
-                        </div>
-                        <div class="text-center">
-                            <md-button type="submit" class="md-raised md-primary admin-btn">Log in</md-button>
-                        </div>
-                    </form>
-                </div>
-                <div class="text-center login-footer">
-                    <md-button ng-click="navigateTo('/register/admin')">Create Account</md-button>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="alert alert-success" ng-show="isCreated">
         Your account has been created now you can login in this awesome application ! ;-)

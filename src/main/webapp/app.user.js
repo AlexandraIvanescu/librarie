@@ -3,6 +3,5 @@
  */
 angular.module('libraryApp').constant('USER_ROLES', {
     all: '*',
-    user: 'USER',
-    admin: 'ADMIN'
+    user: 'USER'
 });
