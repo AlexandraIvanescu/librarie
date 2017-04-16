@@ -23,21 +23,17 @@ import ro.librarie.online.services.UserDetailsService;
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
-    //private PasswordEncoder passwordEncoder;
     private RestUnauthorizedEntryPoint restAuthenticationEntryPoint;
     private RestAccessDeniedHandler restAccessDeniedHandler;
     private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
     private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService,
-                          //PasswordEncoder passwordEncoder,
-                          RestUnauthorizedEntryPoint restAuthenticationEntryPoint,
+    public SecurityConfig(UserDetailsService userDetailsService, RestUnauthorizedEntryPoint restAuthenticationEntryPoint,
                           RestAccessDeniedHandler restAccessDeniedHandler, RestAuthenticationFailureHandler restAuthenticationFailureHandler,
                           RestAuthenticationSuccessHandler restAuthenticationSuccessHandler) {
 
         this.userDetailsService = userDetailsService;
-        //this.passwordEncoder = passwordEncoder;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
         this.restAccessDeniedHandler = restAccessDeniedHandler;
         this.restAuthenticationFailureHandler = restAuthenticationFailureHandler;
@@ -46,7 +42,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);//.passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -88,10 +84,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }
 
