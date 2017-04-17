@@ -17,12 +17,6 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 loginRequired: false,
                 authorizedRoles: [USER_ROLES.all]
             }
-        }).when('/register', {
-            template: '<register></register>',
-            access: {
-                loginRequired: false,
-                authorizedRoles: [USER_ROLES.all]
-            }
         }).when('/user/books', {
             template: '<book-list></book-list>',
             access: {
