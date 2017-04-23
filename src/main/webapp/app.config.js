@@ -17,6 +17,12 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 loginRequired: false,
                 authorizedRoles: [USER_ROLES.all]
             }
+        }).when('/user/home', {
+            template: '<home></home>',
+            access: {
+                loginRequired: true,
+                authorizedRoles: [USER_ROLES.user]
+            }
         }).when('/user/books', {
             template: '<book-list></book-list>',
             access: {
@@ -30,7 +36,7 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 authorizedRoles: [USER_ROLES.all]
             }
         }).when('/loading', {
-                template: '<loading></loading>',
+            template: '<loading></loading>',
             access: {
                 loginRequired: false,
                 authorizedRoles: [USER_ROLES.all]
@@ -43,9 +49,7 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
             }
         });
     }
-]).run(function ($rootScope, $location, $http, UserSession, AdminSession, UserAuthSharedService,
-               AdminAuthSharedService, $q, $timeout, localStorageService) {
-
+]).run(function ($rootScope, $location, $http, UserSession, UserAuthSharedService, $q, $timeout, localStorageService) {
 
     $rootScope.$on('event:auth-forbidden', function () {
         $rootScope.$evalAsync(function () {
@@ -56,9 +60,8 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function (event, data) {
         $rootScope.isUser = localStorageService.get("isUser");
-        $rootScope.isAdmin = localStorageService.get("isAdmin");
         $rootScope.loadingAccount = false;
-        var home = $rootScope.isUser ? "/user/home" : "/admin/home";
+        var home = $rootScope.isUser ? "/user/home" : "";
         var nextLocation = ($rootScope.requestedUrl ? $rootScope.requestedUrl : home);
         var delay = ($location.path() === "/loading" ? 1500 : 0);
 
@@ -67,9 +70,6 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
             if ($rootScope.isUser) {
                 UserSession.create(data);
                 $rootScope.account = UserAuthSharedService;
-            } else if ($rootScope.isAdmin) {
-                AdminSession.create(data);
-                $rootScope.account = AdminAuthSharedService;
             }
 
             $rootScope.authenticated = true;
@@ -86,7 +86,6 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
         } else {
 
             UserSession.invalidate();
-            AdminSession.invalidate();
 
             $rootScope.authenticated = false;
             $rootScope.loadingAccount = false;
@@ -100,7 +99,7 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
         } else if (next.access && next.access.loginRequired && !$rootScope.authenticated) {
             event.preventDefault();
             $rootScope.$broadcast("event:auth-loginRequired", {});
-        } else if (next.access && (!AdminAuthSharedService.isAuthorized(next.access.authorizedRoles) && !UserAuthSharedService.isAuthorized(next.access.authorizedRoles))) {
+        } else if (next.access && (!UserAuthSharedService.isAuthorized(next.access.authorizedRoles))) {
             event.preventDefault();
             $rootScope.$broadcast("event:auth-forbidden", {});
         }
@@ -112,12 +111,9 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
     });
 
     $rootScope.isUser = localStorageService.get("isUser");
-    $rootScope.isAdmin = localStorageService.get("isAdmin");
 
     // Get already authenticated user account
     if ($rootScope.isUser) {
         UserAuthSharedService.getAccount();
-    } else if ($rootScope.isAdmin) {
-        AdminAuthSharedService.getAccount();
     }
 });
