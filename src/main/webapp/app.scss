@@ -121,36 +121,6 @@ span.nav-caption {
   border: 3px solid #FFFFFF;
 }
 
-$employer-color: #3063A5;
-$employer-post0: #ffff8d;
-$employer-post1: #b9f6ca;
-$employer-post2: #ff8a80;
-
-.employer-login {
-  @extend .login;
-  border-color: $employer-color;
-}
-
-.employer-logo {
-  @extend .logo;
-  color: $employer-color;
-}
-
-.employer-login-header {
-  @extend .login-header;
-  background-color: $employer-color;
-}
-
-.md-button.md-primary.md-raised.employer-btn {
-  background-color: $employer-color;
-}
-
-.nav-bar-employer > .md-nav-bar,
-.new-post-toolbar,
-.change-post-toolbar {
-  background-color: $employer-color !important;
-}
-
 .new-post,
 .change-post,
 .delete-post {
@@ -179,22 +149,7 @@ $employer-post2: #ff8a80;
   width: 100%;
 }
 
-.post0 {
-  background-color: $employer-post0;
-  height: 300px;
-}
-
-.post1, .post3 {
-  background-color: $employer-post1;
-  height: 300px;
-}
-
-.post2 {
-  background-color: $employer-post2;
-  height: 300px;
-}
-
-div.home-employer {
+div.home-user {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -215,13 +170,6 @@ div.home-employer {
 
 .applications {
   padding-left: 8px;
-}
-
-.applications md-toolbar,
-.reviews md-toolbar,
-.change md-toolbar {
-  background-color: $employer-color !important;
-  color: white;
 }
 
 .applications md-toolbar {
@@ -285,12 +233,7 @@ div.home-employer {
   position: relative;
 }
 
-.employee-picture {
-  height: 100px;
-  margin: 20px;
-}
-
-.login-title{
+.login-title {
   font-size: 30px;
   text-align: center;
 }

@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col-sm-6 login-container">
             <md-card md-theme-watch>
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Login</h1>
+                </md-toolbar>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="login-title">Login</span>
                         <form role="form" ng-submit="userLogin()">
                             <div class="login-input">
                                 <md-input-container>
@@ -23,7 +25,7 @@
                                 </md-input-container>
                             </div>
                             <div class="text-center">
-                                <md-button type="submit" class="md-raised md-primary employer-btn">Log in</md-button>
+                                <md-button type="submit" class="md-raised md-primary">Log in</md-button>
                             </div>
                         </form>
                     </md-card-title-text>
@@ -32,9 +34,11 @@
         </div>
         <div class="col-sm-6 login-container">
             <md-card md-theme-watch>
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Create Account</h1>
+                </md-toolbar>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="login-title">Create Account</span>
                         <form role="form" name="userForm" ng-submit="newAccount()">
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
@@ -105,7 +109,7 @@
                                 </md-input-container>
                             </div>
                             <div class="text-center">
-                                <md-button type="submit" class="md-raised md-primary employer-btn">
+                                <md-button type="submit" class="md-raised md-primary">
                                     Create Account
                                 </md-button>
                             </div>

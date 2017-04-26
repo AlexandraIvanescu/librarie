@@ -2,6 +2,7 @@ package ro.librarie.online.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ro.librarie.online.config.SecurityUtils;
 import ro.librarie.online.models.Book;
 import ro.librarie.online.models.User;
 import ro.librarie.online.services.LibrarieService;
@@ -43,6 +44,12 @@ public class LibrarieController {
         model.put("isCreated", isCreated);
 
         return model;
+    }
+
+    @RequestMapping(value = "/user/account", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserAccount() {
+        return userService.findByEmail(SecurityUtils.getCurrentLogin());
     }
 
 }
