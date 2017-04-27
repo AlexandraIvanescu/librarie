@@ -29,6 +29,18 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 loginRequired: true,
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).when('/user/subscribers', {
+            template: '<subscribers></subscribers>',
+            access: {
+                loginRequired: true,
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).when('/user/settings', {
+            template: '<settings></settings>',
+            access: {
+                loginRequired: true,
+                authorizedRoles: [USER_ROLES.user]
+            }
         }).when("/error/:code", {
             template: '<error></error>',
             access: {
