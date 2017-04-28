@@ -17,25 +17,25 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 loginRequired: false,
                 authorizedRoles: [USER_ROLES.all]
             }
-        }).when('/user/home', {
+        }).when('/home', {
             template: '<home></home>',
             access: {
                 loginRequired: true,
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).when('/user/books', {
+        }).when('/books', {
             template: '<book-list></book-list>',
             access: {
                 loginRequired: true,
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).when('/user/subscribers', {
+        }).when('/subscribers', {
             template: '<subscribers></subscribers>',
             access: {
                 loginRequired: true,
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).when('/user/settings', {
+        }).when('/settings', {
             template: '<settings></settings>',
             access: {
                 loginRequired: true,
@@ -73,7 +73,7 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
     $rootScope.$on('event:auth-loginConfirmed', function (event, data) {
         $rootScope.isUser = localStorageService.get("isUser");
         $rootScope.loadingAccount = false;
-        var home = $rootScope.isUser ? "/user/home" : "";
+        var home = $rootScope.isUser ? "/home" : "";
         var nextLocation = ($rootScope.requestedUrl ? $rootScope.requestedUrl : home);
         var delay = ($location.path() === "/loading" ? 1500 : 0);
 

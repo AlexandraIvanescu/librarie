@@ -1,4 +1,4 @@
-package ro.librarie.online.models;
+package ro.biblioteca.online.models;
 
 /**
  * Created by Alexandra Ale on 19.03.2017.
@@ -21,7 +21,6 @@ public class Error {
     public void setReason(String reason) {
         this.reason = reason;
     }
-
 
     public String getMessage() {
         return message;

@@ -1,4 +1,4 @@
-package ro.librarie.online.config;
+package ro.biblioteca.online.config;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

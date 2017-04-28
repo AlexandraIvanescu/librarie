@@ -1,4 +1,4 @@
-package ro.librarie.online.config;
+package ro.biblioteca.online.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ro.librarie.online.services.UserDetailsService;
+import ro.biblioteca.online.services.LibraryDetailsService;
 
 /**
  * Created by Alexandra Ale on 05.03.2017.
@@ -22,18 +22,18 @@ import ro.librarie.online.services.UserDetailsService;
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsService userDetailsService;
+    private LibraryDetailsService libraryDetailsService;
     private RestUnauthorizedEntryPoint restAuthenticationEntryPoint;
     private RestAccessDeniedHandler restAccessDeniedHandler;
     private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
     private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService, RestUnauthorizedEntryPoint restAuthenticationEntryPoint,
+    public SecurityConfig(LibraryDetailsService libraryDetailsService, RestUnauthorizedEntryPoint restAuthenticationEntryPoint,
                           RestAccessDeniedHandler restAccessDeniedHandler, RestAuthenticationFailureHandler restAuthenticationFailureHandler,
                           RestAuthenticationSuccessHandler restAuthenticationSuccessHandler) {
 
-        this.userDetailsService = userDetailsService;
+        this.libraryDetailsService = libraryDetailsService;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
         this.restAccessDeniedHandler = restAccessDeniedHandler;
         this.restAuthenticationFailureHandler = restAuthenticationFailureHandler;
@@ -42,7 +42,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(libraryDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -57,11 +57,11 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .antMatcher("/user/**")
+                .antMatcher("/library/**")
                 .headers().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**", "/librarie/**", "/book-list/**").hasAnyAuthority("USER")
+                .antMatchers("/library/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -69,7 +69,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(restAccessDeniedHandler)
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/user/login")
+                .loginProcessingUrl("/library/login")
                 .successHandler(restAuthenticationSuccessHandler)
                 .failureHandler(restAuthenticationFailureHandler)
                 .usernameParameter("email")
@@ -77,7 +77,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/user/logout")
+                .logoutUrl("/library/logout")
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
                 .deleteCookies("JSESSIONID")
                 .permitAll();

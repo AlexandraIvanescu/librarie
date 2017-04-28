@@ -5,7 +5,7 @@
 
 angular.module('libraryApp').factory('Book', ['$resource',
     function ($resource) {
-        return $resource('librarie/get/books', {}, {
+        return $resource('/library/get/books', {}, {
             query: {
                 method: 'GET',
                 isArray: true

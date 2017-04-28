@@ -1,4 +1,4 @@
-package ro.librarie.online.config;
+package ro.biblioteca.online.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

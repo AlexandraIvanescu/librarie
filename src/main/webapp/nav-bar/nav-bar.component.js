@@ -13,7 +13,7 @@ angular.module('libraryApp').component('navBar', {
             };
 
             $scope.logout = function () {
-                $http.post('/user/logout', {}).finally(function () {
+                $http.post('/library/logout', {}).finally(function () {
                     UserAuthSharedService.logout();
                 });
             };

@@ -1,12 +1,12 @@
-package ro.librarie.online.config;
+package ro.biblioteca.online.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import ro.librarie.online.models.Response;
-import ro.librarie.online.models.Error;
+import ro.biblioteca.online.models.Error;
+import ro.biblioteca.online.models.Response;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

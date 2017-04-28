@@ -1,12 +1,12 @@
-package ro.librarie.online;
+package ro.biblioteca.online;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LibrarieApplication {
+public class LibraryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LibrarieApplication.class, args);
+		SpringApplication.run(LibraryApplication.class, args);
 	}
 }

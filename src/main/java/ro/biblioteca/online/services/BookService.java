@@ -1,21 +1,21 @@
-package ro.librarie.online.services;
+package ro.biblioteca.online.services;
 
 import org.springframework.stereotype.Service;
-import ro.librarie.online.models.Book;
-import ro.librarie.online.models.Category;
+import ro.biblioteca.online.models.Book;
+import ro.biblioteca.online.models.Category;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Alexandra Ale on 25.02.2017.
  */
 @Service
-public class LibrarieService {
+public class BookService {
+
     public List<Book> getBooks() {
         ArrayList<Book> books = new ArrayList<>();
 
@@ -37,4 +37,5 @@ public class LibrarieService {
         return books;
 
     }
+
 }

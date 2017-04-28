@@ -1,4 +1,4 @@
-package ro.librarie.online.models;
+package ro.biblioteca.online.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -9,11 +9,11 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-public class User {
+public class Library {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     @Pattern(regexp = "^.+@.+\\..+$")
@@ -24,21 +24,16 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[ A-Za-z]+$")
     @Size(min = 3, max = 30)
-    private String firstName;
+    private String name;
 
-    @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z]+$")
-    @Size(min = 3, max = 30)
-    private String lastName;
-
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -57,19 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

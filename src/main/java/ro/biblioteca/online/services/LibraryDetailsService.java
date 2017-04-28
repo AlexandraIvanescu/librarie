@@ -1,15 +1,17 @@
-package ro.librarie.online.services;
+package ro.biblioteca.online.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import ro.librarie.online.repositories.UserRepository;
+import ro.biblioteca.online.models.Library;
+import ro.biblioteca.online.repositories.LibraryRepository;
 
 
 import java.util.ArrayList;
@@ -22,13 +24,13 @@ import java.util.Set;
  */
 
 @Service
-public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class LibraryDetailsService implements UserDetailsService {
 
-    private UserRepository repository;
+    private LibraryRepository repository;
 
     @Autowired
-    public UserDetailsService(UserRepository repository) {
-        Assert.notNull(repository, "User Repository must be not null !");
+    public LibraryDetailsService(LibraryRepository repository) {
+        Assert.notNull(repository, "Library Repository must be not null !");
 
         this.repository = repository;
     }
@@ -36,15 +38,15 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        ro.librarie.online.models.User user = repository.findByEmail(email);
+        Library library = repository.findByEmail(email);
 
         List<GrantedAuthority> authorities = buildUserAuthority();
 
-        return buildUserForAuthentication(user, authorities);
+        return buildUserForAuthentication(library, authorities);
     }
 
-    private User buildUserForAuthentication(ro.librarie.online.models.User user, List<GrantedAuthority> authorities) {
-        return new User(user.getEmail(), user.getPassword(), true, true, true, true, authorities);
+    private User buildUserForAuthentication(Library library, List<GrantedAuthority> authorities) {
+        return new User(library.getEmail(), library.getPassword(), true, true, true, true, authorities);
     }
 
     private List<GrantedAuthority> buildUserAuthority() {

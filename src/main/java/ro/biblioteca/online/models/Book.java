@@ -1,4 +1,4 @@
-package ro.librarie.online.models;
+package ro.biblioteca.online.models;
 
 import java.util.Date;
 
@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by Alexandra Ale on 25.02.2017.
  */
 public class Book {
+
     private String title;
     private String author;
     private Date release;
@@ -59,4 +60,5 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }
