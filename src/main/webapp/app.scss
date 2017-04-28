@@ -253,3 +253,17 @@ div.home-user {
   position: absolute;
   bottom: 0;
 }
+
+.button-add {
+  padding: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 70px !important;
+  width: 70px !important;
+}
+
+.button-add md-icon {
+  height: 100%;
+  width: 100%;
+}

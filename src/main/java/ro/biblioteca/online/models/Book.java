@@ -9,14 +9,16 @@ public class Book {
 
     private String title;
     private String author;
+    private String image;
     private Date release;
     private int pageNumber;
     private Category category;
 
-    public Book(String title, String author, Date release, int pageNumber, Category category) {
+    public Book(String title, String author, Date release, String image, int pageNumber, Category category) {
         this.title = title;
         this.author = author;
         this.release = release;
+        this.image = image;
         this.pageNumber = pageNumber;
         this.category = category;
     }
@@ -43,6 +45,14 @@ public class Book {
 
     public void setRelease(Date release) {
         this.release = release;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getPageNumber() {

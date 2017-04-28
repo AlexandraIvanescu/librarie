@@ -5,8 +5,10 @@
 
 angular.module('libraryApp').component('navBar', {
     templateUrl: 'nav-bar/nav-bar.template.html',
-    controller: ['$scope', '$location', '$http', 'UserAuthSharedService',
-        function NavBarController($scope, $location, $http, UserAuthSharedService) {
+    controller: ['$scope', '$location', '$http', 'UserAuthSharedService', 'UserSession',
+        function NavBarController($scope, $location, $http, UserAuthSharedService, UserSession) {
+
+            $scope.name = UserSession.name;
 
             $scope.goTo = function (newpath) {
                 $location.path(newpath);

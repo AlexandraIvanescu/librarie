@@ -22,9 +22,9 @@ public class BookService {
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         try {
 
-            Book book1 = new Book("Adultery", "Paulo Coehlo", formatter.parse("04/10/2014"), 272, Category.ROMANCE);
-            Book book2 = new Book("The Jungle Book", "Rudyard Kipling", formatter.parse("05/22/1894"), 250, Category.CHILDRENS);
-            Book book3 = new Book("The Girl on the Train", "Paula Hawkins", formatter.parse("01/13/2015"), 395, Category.MYSTERY);
+            Book book1 = new Book("Adultery", "Paulo Coehlo", formatter.parse("04/10/2014"), "adultery.jpg", 272, Category.ROMANCE);
+            Book book2 = new Book("The Jungle Book", "Rudyard Kipling", formatter.parse("05/22/1894"), "junglebook.jpeg", 250, Category.CHILDRENS);
+            Book book3 = new Book("The Girl on the Train", "Paula Hawkins", formatter.parse("01/13/2015"), "The-Girl-on-the-Train.jpg", 395, Category.MYSTERY);
 
             books.add(book1);
             books.add(book2);
