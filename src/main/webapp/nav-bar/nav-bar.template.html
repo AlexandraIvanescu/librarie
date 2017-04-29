@@ -1,0 +1,32 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')"
+            md-whiteframe="3" style="height: 100%;">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{name}}</h1>
+    </md-toolbar>
+    <md-content style="height: 100%;">
+        <md-button class="md-primary menu-button" ng-click="goTo('/home')">
+            <md-icon md-svg-icon="images/library.svg"></md-icon>
+            <span>Acasa</span>
+        </md-button>
+        <br>
+        <md-button class="md-primary menu-button" ng-click="goTo('/books')">
+            <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+            <span>Carti</span>
+        </md-button>
+        <br>
+        <md-button class="md-primary menu-button" ng-click="goTo('/subscribers')">
+            <md-icon md-svg-icon="images/users.svg"></md-icon>
+            <span>Abonati</span>
+        </md-button>
+        <br>
+        <md-button class="md-primary menu-button" ng-click="goTo('/settings')">
+            <md-icon md-svg-icon="images/settings.svg"></md-icon>
+            <span>Setari</span>
+        </md-button>
+        <br>
+        <md-button class="md-warn menu-button logout" ng-click="logout()">
+            <md-icon md-svg-icon="images/exit.svg"></md-icon>
+            <span>Logout</span>
+        </md-button>
+    </md-content>
+</md-sidenav>

@@ -8,16 +8,6 @@ angular.module('libraryApp').component('home', {
     controller: ['$scope', '$location', '$http', 'UserAuthSharedService',
         function HomeController($scope, $location, $http, UserAuthSharedService) {
 
-            $scope.goTo = function (newpath) {
-                $location.path(newpath);
-            };
-
-            $scope.logout = function () {
-                $http.post('/user/logout', {}).finally(function () {
-                    UserAuthSharedService.logout();
-                });
-            };
-
         }
     ]
 });

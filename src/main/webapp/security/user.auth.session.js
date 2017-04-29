@@ -9,13 +9,12 @@ angular.module('libraryApp').service('UserAuthSharedService', function ($rootSco
                 ignoreAuthModule: 'ignoreAuthModule',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             };
-            $http.post('/user/login', $.param({
+            $http.post('/library/login', $.param({
                 email: email,
                 password: password
             }), config)
                 .then(function (response) {
                     localStorageService.set('isUser', true);
-                    localStorageService.set('isAdmin', false);
 
                     authService.loginConfirmed(response.data);
                 }).catch(function () {
@@ -28,7 +27,7 @@ angular.module('libraryApp').service('UserAuthSharedService', function ($rootSco
 
         getAccount: function () {
             $rootScope.loadingAccount = true;
-            $http.get('/user/account')
+            $http.get('/library/get/account')
                 .then(function (response) {
                     authService.loginConfirmed(response.data);
                 });
@@ -57,7 +56,6 @@ angular.module('libraryApp').service('UserAuthSharedService', function ($rootSco
             $rootScope.authenticated = false;
             $rootScope.account = null;
             localStorageService.remove('isUser');
-            localStorageService.remove('isAdmin');
             UserSession.invalidate();
             authService.loginCancelled();
         }

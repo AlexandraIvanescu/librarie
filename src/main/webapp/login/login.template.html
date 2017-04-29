@@ -2,28 +2,32 @@
     <div class="row">
         <div class="col-sm-6 login-container">
             <md-card md-theme-watch>
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Login</h1>
+                </md-toolbar>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="login-title">Login</span>
                         <form role="form" ng-submit="userLogin()">
                             <div class="login-input">
                                 <md-input-container>
+                                    <md-icon md-svg-icon="images/email.svg"></md-icon>
                                     <label for="userEmail">Email</label>
                                     <input id="userEmail" ng-model="loginCredentials.email" type="email" required>
                                     <span ng-show="userAuthenticationError" class="help-block login-alert">
-                                    Please check your credentials and try again.
-                                </span>
+                                        Va rugam sa verificati cu atentie adresa de email.
+                                    </span>
                                 </md-input-container>
                             </div>
                             <div class="login-input">
                                 <md-input-container>
-                                    <label for="userPassword">Password</label>
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="userPassword">Parola</label>
                                     <input id="userPassword" ng-model="loginCredentials.password" type="password"
                                            required>
                                 </md-input-container>
                             </div>
                             <div class="text-center">
-                                <md-button type="submit" class="md-raised md-primary employer-btn">Log in</md-button>
+                                <md-button type="submit" class="md-raised md-primary">Log in</md-button>
                             </div>
                         </form>
                     </md-card-title-text>
@@ -32,81 +36,73 @@
         </div>
         <div class="col-sm-6 login-container">
             <md-card md-theme-watch>
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Creati cont</h1>
+                </md-toolbar>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="login-title">Create Account</span>
                         <form role="form" name="userForm" ng-submit="newAccount()">
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/library.svg"></md-icon>
+                                    <label for="name">Numele Bibliotecii</label>
+                                    <input id="name" required name="name" ng-model="library.name"
+                                           minlength="3"
+                                           maxlength="30" ng-pattern="/^[ a-zA-Z]+$/">
+                                    <div ng-messages="userForm.name.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
+                                            Trebuie sa contina doar litere.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/email.svg"></md-icon>
                                     <label for="email">Email</label>
-                                    <input id="email" name="email" ng-model="user.email" type="email" required
-                                           minlength="10"
-                                           maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                    <input id="email" name="email" ng-model="library.email" type="email" required
+                                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
                                     <div ng-messages="userForm.email.$error" role="alert">
                                         <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                            Your email must be between 10 and 100 characters long and look like an email
-                                            address.
+                                            Verificati cu atentie adresa de email pe care ati introduso.
                                         </div>
                                     </div>
                                 </md-input-container>
                             </div>
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label for="firstName">First Name</label>
-                                    <input id="firstName" required name="firstName" ng-model="user.firstName"
-                                           minlength="3"
-                                           maxlength="30" ng-pattern="/^[a-zA-Z]+$/">
-                                    <div ng-messages="userForm.firstName.$error" role="alert">
-                                        <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
-                                            Must contain only letters.
-                                        </div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label for="lastName">Last Name</label>
-                                    <input id="lastName" required name="lastName" ng-model="user.lastName" minlength="3"
-                                           maxlength="30" ng-pattern="/^[a-zA-Z]+$/">
-                                    <div ng-messages="userForm.lastName.$error" role="alert">
-                                        <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
-                                            Must contain only letters.
-                                        </div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label for="password">Password</label>
-                                    <input id="password" name="password" ng-model="user.password" type="password"
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="password">Parola</label>
+                                    <input id="password" name="password" ng-model="library.password" type="password"
                                            required
                                            minlength="10" maxlength="30">
                                     <div ng-messages="userForm.password.$error" role="alert">
                                         <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                            Your password must be between 10 and 30 characters long.
+                                            Parola trebuie sa fie intre 10 si 30 de caractere.
                                         </div>
                                     </div>
                                 </md-input-container>
                             </div>
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label for="repeatPassword">Repeat Password</label>
-                                    <input id="repeatPassword" name="repeatPassword" ng-model="user.repeatPassword"
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="repeatPassword">Repetati parola</label>
+                                    <input id="repeatPassword" name="repeatPassword" ng-model="library.repeatPassword"
                                            type="password" required minlength="10" maxlength="30"
-                                           ng-match="user.password">
+                                           ng-match="library.password">
                                     <div ng-messages="userForm.repeatPassword.$error" role="alert">
                                         <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                            Your password must be between 10 and 30 characters long.
+                                            Parola trebuie sa fie intre 10 si 30 de caractere.
                                         </div>
                                         <div ng-message="match">
-                                            Passwords have to match !
+                                            Cele doua parole nu sunt identice.
                                         </div>
                                     </div>
                                 </md-input-container>
                             </div>
                             <div class="text-center">
-                                <md-button type="submit" class="md-raised md-primary employer-btn">
-                                    Create Account
+                                <md-button type="submit" class="md-raised md-primary">
+                                    Creati contul
                                 </md-button>
                             </div>
                         </form>
@@ -119,6 +115,6 @@
         </div>
     </div>
     <div class="alert alert-success" ng-show="isCreated">
-        Your account has been created now you can login in this awesome application ! ;-)
+        Contul dumneavoastra a fost creat cu succes !
     </div>
 </div>

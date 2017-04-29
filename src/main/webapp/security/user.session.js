@@ -5,18 +5,16 @@
 angular.module('libraryApp').service('UserSession', function () {
 
     this.create = function (data) {
-        this.userId = data.userId;
+        this.id = data.id;
         this.email = data.email;
-        this.firstName = data.firstName;
-        this.lastName = data.lastName;
+        this.name = data.name;
         this.userRoles = ['USER'];
     };
 
     this.invalidate = function () {
-        this.userId = null;
+        this.id = null;
         this.email = null;
-        this.firstName = null;
-        this.lastName = null;
+        this.name = null;
         this.userRoles = null;
     };
 

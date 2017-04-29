@@ -7,7 +7,7 @@ angular.module('libraryApp').component('login', {
     templateUrl: 'login/login.template.html',
     controller: ['$scope', '$rootScope', '$http', '$location', 'UserAuthSharedService',
         function LoginController($scope, $rootScope, $http, $location, UserAuthSharedService) {
-            $scope.user = {};
+            $scope.library = {};
             $scope.loginCredentials = {};
 
             $scope.userLogin = function () {
@@ -20,16 +20,16 @@ angular.module('libraryApp').component('login', {
             };
 
             $scope.newAccount = function () {
-                if ($scope.user.password === $scope.user.repeatPassword) {
+                if ($scope.library.password === $scope.library.repeatPassword) {
 
                     var req = {
                         method: 'POST',
                         dataType: 'json',
-                        url: '/register/user',
+                        url: '/register',
                         headers: {
                             'Content-Type': 'application/json; charset=utf-8'
                         },
-                        data: $scope.user
+                        data: $scope.library
                     };
 
                     $http(req).then(function (response) {
@@ -38,12 +38,12 @@ angular.module('libraryApp').component('login', {
                             $rootScope.isCreated = true;
                         } else {
                             $scope.error = true;
-                            $scope.errorMessage = $scope.user.email + " already exist !";
+                            $scope.errorMessage = $scope.library.email + " exista deja !";
                         }
 
                     }, function () {
                         $scope.error = true;
-                        $scope.errorMessage = "A problem has happened during recording. Please try again.";
+                        $scope.errorMessage = "O problema s-a inregistrat pe parcursul inregistrarii. Va rugam sa incercati din nou !";
                     });
                 }
             };
