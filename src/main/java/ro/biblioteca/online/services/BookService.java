@@ -1,8 +1,11 @@
 package ro.biblioteca.online.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.Category;
+import ro.biblioteca.online.repositories.BookRepository;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,26 +19,22 @@ import java.util.List;
 @Service
 public class BookService {
 
-    public List<Book> getBooks() {
-        ArrayList<Book> books = new ArrayList<>();
+    BookRepository bookRepository;
 
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        try {
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
-            Book book1 = new Book("Adultery", "Paulo Coehlo", formatter.parse("04/10/2014"), "adultery.jpg", 272, Category.ROMANCE);
-            Book book2 = new Book("The Jungle Book", "Rudyard Kipling", formatter.parse("05/22/1894"), "junglebook.jpeg", 250, Category.CHILDRENS);
-            Book book3 = new Book("The Girl on the Train", "Paula Hawkins", formatter.parse("01/13/2015"), "The-Girl-on-the-Train.jpg", 395, Category.MYSTERY);
+    public List<Book> getAllBooks() {
+        List<Book> books = bookRepository.findBooksByLibraryEmail(SecurityUtils.getCurrentLogin());
 
-            books.add(book1);
-            books.add(book2);
-            books.add(book3);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        books.forEach(book -> {
+            book.setLibrary(null);
+            book.setCategory(null);
+        });
 
         return books;
-
     }
 
 }

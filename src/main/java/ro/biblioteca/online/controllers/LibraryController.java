@@ -31,7 +31,7 @@ public class LibraryController {
     @RequestMapping("/library/get/books")
     @ResponseBody
     public List<Book> getBooks() {
-        return bookService.getBooks();
+        return bookService.getAllBooks();
     }
 
     @RequestMapping(value = "/library/get/account", method = RequestMethod.GET)

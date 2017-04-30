@@ -39,6 +39,7 @@ public class LibraryDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Library library = repository.findByEmail(email);
+        library.setBooks(null);
 
         List<GrantedAuthority> authorities = buildUserAuthority();
 
