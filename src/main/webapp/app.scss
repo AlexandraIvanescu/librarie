@@ -139,7 +139,8 @@ span.nav-caption {
 }
 
 .new-post-label,
-.change-post-label {
+.change-post-label,
+.new-book-fields {
   width: 100%;
 }
 
@@ -263,7 +264,30 @@ div.home-user {
   width: 70px !important;
 }
 
-.button-add md-icon {
+.circle-button {
+  padding: 0;
+}
+
+.button-add md-icon,
+.circle-button md-icon {
   height: 100%;
   width: 100%;
+}
+
+.close-button {
+  right: 0;
+  margin-right: 25%;
+  position: absolute;
+}
+
+.confirm-button {
+  margin-left: 25%;
+}
+
+.md-datepicker md-icon {
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.md-datepicker-calendar-icon {
+  fill: rgba(0, 0, 0, 0) !important;
 }
