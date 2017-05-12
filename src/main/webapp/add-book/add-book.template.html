@@ -13,10 +13,11 @@
                     <md-input-container class="md-block new-book-fields">
                         <md-icon md-svg-icon="images/agenda.svg"></md-icon>
                         <label for="title">Titlu</label>
-                        <input id="title" required name="title" ng-model="book.title" minlength="3" maxlength="30">
+                        <input id="title" required name="title" ng-model="book.title" minlength="3" maxlength="30"
+                               ng-pattern="/^[ A-Za-z]+$/">
                         <div ng-messages="bookForm.title.$error" role="alert">
-                            <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                Acest camp trebuie completat !
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un numar de carte valid !
                             </div>
                         </div>
                     </md-input-container>
@@ -26,10 +27,11 @@
                     <md-input-container class="md-block new-book-fields">
                         <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
                         <label for="author">Autor</label>
-                        <input id="author" required name="author" ng-model="book.author" minlength="3" maxlength="3">
+                        <input id="author" required name="author" ng-model="book.author" minlength="3" maxlength="30"
+                               ng-pattern="/^[ A-Za-z]+$/">
                         <div ng-messages="bookForm.author.$error" role="alert">
-                            <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                Acest camp trebuie completat !
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un nume de autor valid !
                             </div>
                         </div>
                     </md-input-container>
@@ -40,10 +42,10 @@
                         <md-icon md-svg-icon="images/numbers.svg"></md-icon>
                         <label for="pageNumber">Numar de pagini</label>
                         <input id="pageNumber" required name="pageNumber" ng-model="book.pageNumber" minlength="1"
-                               maxlength="3">
+                               maxlength="3" ng-pattern="/^[0-9]+$/">
                         <div ng-messages="bookForm.pageNumber.$error" role="alert">
-                            <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                Acest camp trebuie completat !
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un numar !
                             </div>
                         </div>
                     </md-input-container>
@@ -64,8 +66,8 @@
                     <md-input-container class="md-block new-post-label">
                         <md-icon md-svg-icon="images/folder.svg"></md-icon>
                         <label>Categorie</label>
-                        <md-select name="category" ng-model="book.category" required>
-                            <md-option ng-repeat=" category in categories" value="{{category}}">
+                        <md-select name="category" ng-model="book.categoryIndex" required>
+                            <md-option ng-repeat=" category in categories" value="{{$index}}">
                                 {{category.name}}
                             </md-option>
                         </md-select>
@@ -75,6 +77,16 @@
                             </div>
                         </div>
                     </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <div class="fileUpload md-primary menu-button md-button md-ink-ripple">
+                        <span>
+                            <md-icon md-svg-src="images/picture.svg"></md-icon>
+                            Adaugati poza de coperta
+                        </span>
+                        <input type="file" class="upload" file-model="bookPicture"/>
+                    </div>
                 </div>
 
                 <div layout="row" class="dialog-button" style="padding-top: 50px;">

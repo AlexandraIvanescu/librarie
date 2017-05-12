@@ -2,6 +2,7 @@ package ro.biblioteca.online.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.Category;
@@ -32,6 +33,17 @@ public class LibraryController {
         this.categoryService = categoryService;
     }
 
+
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    public Map<String, Object> registerNewEmployeeAccount(@RequestBody Library library) {
+        boolean isCreated = libraryService.registerNewLibraryAccount(library);
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("isCreated", isCreated);
+
+        return model;
+    }
+
     @RequestMapping("/library/get/books")
     @ResponseBody
     public List<Book> getBooks() {
@@ -50,14 +62,16 @@ public class LibraryController {
         return categoryService.getAllCategory();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/register")
-    public Map<String, Object> registerNewEmployeeAccount(@RequestBody Library library) {
-        boolean isCreated = libraryService.registerNewLibraryAccount(library);
+    @RequestMapping(value = "/library/add/book", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addBook(@RequestBody Book book) {
+        return bookService.addBook(book);
+    }
 
-        Map<String, Object> model = new HashMap<>();
-        model.put("isCreated", isCreated);
-
-        return model;
+    @RequestMapping(value = "/library/add/picture", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addPicture(@RequestParam(value = "picture") MultipartFile picture) {
+        return bookService.addPicture(picture);
     }
 
 }

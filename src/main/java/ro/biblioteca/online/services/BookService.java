@@ -2,11 +2,16 @@ package ro.biblioteca.online.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.Category;
+import ro.biblioteca.online.models.Library;
 import ro.biblioteca.online.repositories.BookRepository;
+import ro.biblioteca.online.repositories.LibraryRepository;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,11 +24,13 @@ import java.util.List;
 @Service
 public class BookService {
 
-    private  BookRepository bookRepository;
+    private BookRepository bookRepository;
+    private LibraryRepository libraryRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, LibraryRepository libraryRepository) {
         this.bookRepository = bookRepository;
+        this.libraryRepository = libraryRepository;
     }
 
     public List<Book> getAllBooks() {
@@ -35,6 +42,32 @@ public class BookService {
         });
 
         return books;
+    }
+
+
+    public boolean addBook(Book book) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        book.setLibrary(library);
+
+        bookRepository.saveAndFlush(book);
+
+        return true;
+    }
+
+    public boolean addPicture(MultipartFile picture) {
+        String rootDirectory = System.getProperty("user.dir") + "/src/main/webapp/images/books/";
+        File newFile = new File(rootDirectory + picture.getOriginalFilename());
+
+        try {
+            picture.transferTo(newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -8,6 +8,7 @@ angular.module('libraryApp').component('bookList', {
     templateUrl: 'book-list/book-list.template.html',
     controller: ['Book', '$mdPanel', '$rootScope',
         function BookListController(Book, $mdPanel, $rootScope) {
+            var that = this;
             this.books = Book.query();
 
             this.newBook = function () {
@@ -30,6 +31,9 @@ angular.module('libraryApp').component('bookList', {
 
                 $mdPanel.open(config).then(function (result) {
                     $rootScope.panelRef = result;
+                    $rootScope.getAllBooks = function () {
+                        that.books = Book.query();
+                    }
                 });
 
             }
