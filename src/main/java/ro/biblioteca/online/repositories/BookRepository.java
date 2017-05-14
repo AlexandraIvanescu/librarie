@@ -17,4 +17,17 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b from Book b WHERE b.library.email = ?1")
     List<Book> findBooksByLibraryEmail(String email);
 
+    @Query("SELECT b from Book b " +
+            "WHERE b.library.email = ?1 " +
+            "AND LOWER(b.title) LIKE LOWER(CONCAT('%', ?2, '%')) " +
+            "AND LOWER(b.author) LIKE LOWER(CONCAT('%', ?3, '%')) " +
+            "AND b.category.id = ?4")
+    List<Book> findBooksByLibraryEmailAndTitleAndAuthorAndCategoryID(String email, String title, String author, int categoryId);
+
+    @Query("SELECT b FROM Book b " +
+            "WHERE b.library.email = ?1 " +
+            "AND LOWER(b.title) LIKE LOWER(CONCAT('%', ?2, '%')) " +
+            "AND LOWER(b.author) LIKE LOWER(CONCAT('%', ?3, '%'))")
+    List<Book> findBooksByLibraryEmailAndTitleAndAuthor(String email, String title, String author);
+
 }

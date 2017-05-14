@@ -45,6 +45,23 @@ public class BookService {
     }
 
 
+    public List<Book> getAllBooks(String title, String author, int categoryId) {
+        List<Book> books;
+
+        if (categoryId != 0) {
+            books = bookRepository.findBooksByLibraryEmailAndTitleAndAuthorAndCategoryID(SecurityUtils.getCurrentLogin(), title, author, categoryId);
+        } else {
+            books = bookRepository.findBooksByLibraryEmailAndTitleAndAuthor(SecurityUtils.getCurrentLogin(), title, author);
+        }
+
+        books.forEach(book -> {
+            book.setLibrary(null);
+            book.setCategory(null);
+        });
+
+        return books;
+    }
+
     public boolean addBook(Book book) {
         Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
 
