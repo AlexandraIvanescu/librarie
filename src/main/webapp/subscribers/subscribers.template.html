@@ -1,3 +1,14 @@
-<div layout="column" layout-align="top center">
-    Abonati
+<div class="container-fluid book-content">
+    <div class="row">
+        <div class="col-md-3" ng-repeat="subscriber in subscribers">
+            <md-card>
+                <img ng-src="{{'images/subscribers/' + subscriber.image}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{subscriber.lastName + ' ' + subscriber.firstName}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </div>
 </div>

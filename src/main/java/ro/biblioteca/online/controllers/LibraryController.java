@@ -7,9 +7,11 @@ import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.Category;
 import ro.biblioteca.online.models.Library;
+import ro.biblioteca.online.models.Subscriber;
 import ro.biblioteca.online.services.BookService;
 import ro.biblioteca.online.services.CategoryService;
 import ro.biblioteca.online.services.LibraryService;
+import ro.biblioteca.online.services.SubscriberService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +27,14 @@ public class LibraryController {
     private BookService bookService;
     private LibraryService libraryService;
     private CategoryService categoryService;
+    private SubscriberService subscriberService;
 
     @Autowired
-    public LibraryController(BookService bookService, LibraryService libraryService, CategoryService categoryService) {
+    public LibraryController(BookService bookService, LibraryService libraryService, CategoryService categoryService, SubscriberService subscriberService) {
         this.bookService = bookService;
         this.libraryService = libraryService;
         this.categoryService = categoryService;
+        this.subscriberService = subscriberService;
     }
 
 
@@ -78,6 +82,12 @@ public class LibraryController {
     @ResponseBody
     public boolean addPicture(@RequestParam(value = "picture") MultipartFile picture) {
         return bookService.addPicture(picture);
+    }
+
+    @RequestMapping("/library/get/subscribers")
+    @ResponseBody
+    public List<Subscriber> getSubscribers() {
+        return subscriberService.getAllSubscribers();
     }
 
 }

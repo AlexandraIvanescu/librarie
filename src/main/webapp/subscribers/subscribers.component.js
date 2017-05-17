@@ -4,8 +4,10 @@
 
 angular.module('libraryApp').component('subscribers', {
     templateUrl: 'subscribers/subscribers.template.html',
-    controller: ['$scope', '$location', '$http',
-        function SubscribersController($scope, $location, $http) {
+    controller: ['$scope', '$location', '$http', 'Subscriber',
+        function SubscribersController($scope, $location, $http, Subscriber) {
+
+            $scope.subscribers = Subscriber.query();
 
         }
     ]

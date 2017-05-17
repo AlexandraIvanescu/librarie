@@ -32,6 +32,9 @@ public class Library {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
     private Set<Book> books;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
+    private Set<Subscriber> subscribers;
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +73,13 @@ public class Library {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public Set<Subscriber> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(Set<Subscriber> subscribers) {
+        this.subscribers = subscribers;
     }
 }
