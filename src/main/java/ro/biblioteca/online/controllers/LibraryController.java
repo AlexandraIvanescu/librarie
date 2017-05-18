@@ -90,4 +90,10 @@ public class LibraryController {
         return subscriberService.getAllSubscribers();
     }
 
+    @RequestMapping(path = "/library/get/subscribers/search", params = {"lastName", "firstName"})
+    @ResponseBody
+    public List<Subscriber> getBooksSearch(@RequestParam(value = "lastName") String lastName, @RequestParam(value = "firstName") String firstName) {
+        return subscriberService.getAllSubscribers(firstName, lastName);
+    }
+
 }

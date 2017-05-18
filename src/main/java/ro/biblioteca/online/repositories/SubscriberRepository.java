@@ -17,4 +17,10 @@ public interface SubscriberRepository extends JpaRepository<Subscriber, Integer>
     @Query("SELECT s from Subscriber s WHERE s.library.email = ?1")
     List<Subscriber> findSubscribersByLibraryEmail(String email);
 
+    @Query("SELECT s from Subscriber s " +
+            "WHERE s.library.email = ?1 " +
+            "AND LOWER(s.firstName) LIKE LOWER(CONCAT('%', ?2, '%')) " +
+            "AND LOWER(s.lastName) LIKE LOWER(CONCAT('%', ?3, '%'))")
+    List<Subscriber> findSubscribersByLibraryEmailAndFirstNameAndLastName(String email, String firstName, String lastName);
+
 }

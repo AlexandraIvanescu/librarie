@@ -30,4 +30,12 @@ public class SubscriberService {
         return subscribers;
     }
 
+    public List<Subscriber> getAllSubscribers(String firstName, String lastName) {
+        List<Subscriber> subscribers = subscriberRepository.findSubscribersByLibraryEmailAndFirstNameAndLastName(SecurityUtils.getCurrentLogin(), firstName, lastName);
+
+        subscribers.forEach(subscriber -> subscriber.setLibrary(null));
+
+        return subscribers;
+    }
+
 }
