@@ -1,3 +1,45 @@
-<div layout="column" layout-align="top center">
-    Abonati
+<div class="search-menu-container">
+    <md-toolbar class="md-menu-toolbar search-menu">
+        <div layout="row">
+            <div>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="images/users_2.svg"></md-icon>
+                    <label for="lastName">Nume</label>
+                    <input id="lastName" name="lastName" ng-model="lastName" minlength="3" maxlength="30">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="images/user.svg"></md-icon>
+                    <label for="firstName">Prenume</label>
+                    <input id="firstName" name="firstName" ng-model="firstName" minlength="3" maxlength="30">
+                </md-input-container>
+            </div>
+            <div>
+                <md-button class="md-fab button-search" aria-label="Eat cake" ng-click="searchSubscribers()">
+                    <md-icon md-svg-src="images/search.svg"></md-icon>
+                </md-button>
+            </div>
+            <div style="text-align: right">
+                <md-button class="md-fab button-add" aria-label="Eat cake" ng-click="newSubscribers()">
+                    <md-icon md-svg-src="images/plus.svg"></md-icon>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+
+<div class="container-fluid book-content">
+    <div class="row">
+        <div class="col-md-3" ng-repeat="subscriber in subscribers">
+            <md-card>
+                <img ng-src="{{'images/subscribers/' + subscriber.image}}" class="md-card-image" alt="Washed Out">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{subscriber.lastName + ' ' + subscriber.firstName}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </div>
 </div>

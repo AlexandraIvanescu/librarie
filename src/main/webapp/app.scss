@@ -139,7 +139,8 @@ span.nav-caption {
 }
 
 .new-post-label,
-.change-post-label {
+.change-post-label,
+.new-book-fields {
   width: 100%;
 }
 
@@ -254,16 +255,89 @@ div.home-user {
   bottom: 0;
 }
 
-.button-add {
+.button-add,
+.button-search {
   padding: 0;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  height: 70px !important;
-  width: 70px !important;
+  height: 50px !important;
+  width: 50px !important;
+  background-color: rgb(255, 255, 255) !important;
 }
 
-.button-add md-icon {
+.circle-button {
+  padding: 0;
+}
+
+.button-add md-icon,
+.circle-button md-icon {
   height: 100%;
   width: 100%;
+}
+
+.close-button {
+  right: 0;
+  margin-right: 25%;
+  position: absolute;
+}
+
+.confirm-button {
+  margin-left: 25%;
+}
+
+.md-datepicker md-icon {
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.md-datepicker-calendar-icon {
+  fill: rgba(0, 0, 0, 0) !important;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  padding: 0;
+  margin-left: 0;
+}
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.search-menu {
+  position: fixed;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  width: 76%;
+  right: 15px;
+  top: 0;
+}
+
+.book-content {
+  margin-top: 100px;
+}
+
+.search-menu-container md-toolbar {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+.search-menu div {
+  width: 100%;
+}
+
+.search-menu md-input-container {
+  margin-bottom: 0;
+  padding-right: 20px;
 }

@@ -1,4 +1,47 @@
-<div class="container-fluid">
+<div class="search-menu-container">
+    <md-toolbar class="md-menu-toolbar search-menu">
+        <div layout="row">
+            <div>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+                    <label for="title">Titlu</label>
+                    <input id="title" name="title" ng-model="$ctrl.title" minlength="3" maxlength="30">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
+                    <label for="author">Autor</label>
+                    <input id="author" name="author" ng-model="$ctrl.author" minlength="3" maxlength="30">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-icon="images/folder.svg"></md-icon>
+                    <label>Categorie</label>
+                    <md-select name="category" ng-model="$ctrl.categoryId">
+                        <md-option value="0">Toate</md-option>
+                        <md-option ng-repeat=" category in $ctrl.categories" value="{{category.id}}">
+                            {{category.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div>
+                <md-button class="md-fab button-search" aria-label="Eat cake" ng-click="$ctrl.searchBook()">
+                    <md-icon md-svg-src="images/search.svg"></md-icon>
+                </md-button>
+            </div>
+            <div style="text-align: right">
+                <md-button class="md-fab button-add" aria-label="Eat cake" ng-click="$ctrl.newBook()">
+                    <md-icon md-svg-src="images/plus.svg"></md-icon>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+
+<div class="container-fluid book-content">
     <div class="row">
         <div class="col-md-3" ng-repeat="book in $ctrl.books">
             <md-card>
@@ -14,10 +57,5 @@
                 </md-card-content>
             </md-card>
         </div>
-    </div>
-    <div>
-        <md-button class="md-fab button-add" aria-label="Eat cake">
-            <md-icon md-svg-src="images/plus.svg"></md-icon>
-        </md-button>
     </div>
 </div>

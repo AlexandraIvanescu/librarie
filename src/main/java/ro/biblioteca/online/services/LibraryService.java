@@ -38,7 +38,11 @@ public class LibraryService {
     }
 
     public Library findByEmail(String email) {
-        return libraryRepository.findByEmail(email);
+        Library library = libraryRepository.findByEmail(email);
+        library.setBooks(null);
+        library.setSubscribers(null);
+
+        return library;
     }
 
 }

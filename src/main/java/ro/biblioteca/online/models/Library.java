@@ -3,6 +3,7 @@ package ro.biblioteca.online.models;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 /**
  * Created by Alexandra Ale on 19.03.2017.
@@ -27,6 +28,12 @@ public class Library {
     @Pattern(regexp = "^[ A-Za-z]+$")
     @Size(min = 3, max = 30)
     private String name;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
+    private Set<Book> books;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "library")
+    private Set<Subscriber> subscribers;
 
     public Integer getId() {
         return id;
@@ -58,5 +65,21 @@ public class Library {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
+    public Set<Subscriber> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(Set<Subscriber> subscribers) {
+        this.subscribers = subscribers;
     }
 }

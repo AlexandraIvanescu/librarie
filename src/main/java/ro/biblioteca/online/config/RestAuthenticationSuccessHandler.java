@@ -29,6 +29,8 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         Library library = libraryRepository.findByEmail(authentication.getName());
+        library.setBooks(null);
+        library.setSubscribers(null);
 
         SecurityUtils.sendResponse(response, HttpServletResponse.SC_OK, library);
     }
