@@ -96,4 +96,16 @@ public class LibraryController {
         return subscriberService.getAllSubscribers(firstName, lastName);
     }
 
+    @RequestMapping(value = "/library/add/subscriber", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addSubscriber(@RequestBody Subscriber subscriber) {
+        return subscriberService.addSubscriber(subscriber);
+    }
+
+    @RequestMapping(value = "/library/add/subscriber/picture", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addSubscriberPicture(@RequestParam(value = "picture") MultipartFile picture) {
+        return subscriberService.addPicture(picture);
+    }
+
 }
