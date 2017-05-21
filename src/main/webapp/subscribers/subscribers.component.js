@@ -4,15 +4,37 @@
 
 angular.module('libraryApp').component('subscribers', {
     templateUrl: 'subscribers/subscribers.template.html',
-    controller: ['$scope', '$location', '$http', 'Subscriber',
-        function SubscribersController($scope, $location, $http, Subscriber) {
+    controller: ['$scope', '$location', '$http', '$mdPanel', '$rootScope', 'Subscriber',
+        function SubscribersController($scope, $location, $http, $mdPanel, $rootScope, Subscriber) {
 
             $scope.subscribers = Subscriber.query();
             $scope.lastName = '';
             $scope.firstName = '';
 
             $scope.newSubscribers = function () {
-                //TODO
+                var position = $mdPanel.newPanelPosition()
+                    .absolute()
+                    .center();
+
+                var config = {
+                    attachTo: angular.element(document.body),
+                    template: '<add-subscriber></add-subscriber>',
+                    hasBackdrop: true,
+                    panelClass: 'new-post',
+                    position: position,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    disableParentScroll: true,
+                    trapFocus: true
+                };
+
+                $mdPanel.open(config).then(function (result) {
+                    $rootScope.panelRef = result;
+                    $rootScope.getAllSubscriber = function () {
+                        $scope.subscribers = Subscriber.query();
+                    }
+                });
+
             };
 
             $scope.searchSubscribers = function () {
@@ -35,7 +57,6 @@ angular.module('libraryApp').component('subscribers', {
                 });
 
             }
-
 
         }
     ]

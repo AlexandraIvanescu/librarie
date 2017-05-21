@@ -1,0 +1,88 @@
+<div>
+    <div role="dialog" layout="column" layout-align="center center">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Adaugati un nou abonat</h3>
+            </div>
+        </md-toolbar>
+
+        <div class="new-post-container">
+            <form role="form" name="subscriberForm" ng-submit="newSubscriber()">
+
+                <div layout="row">
+                    <md-input-container class="md-block new-book-fields">
+                        <md-icon md-svg-icon="images/email.svg"></md-icon>
+                        <label for="email">Email</label>
+                        <input id="email" required name="email" ng-model="subscriber.email"
+                               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                        <div ng-messages="subscriberForm.email.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un email valid !
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <md-input-container class="md-block new-book-fields">
+                        <md-icon md-svg-icon="images/users_2.svg"></md-icon>
+                        <label for="lastName">Nume</label>
+                        <input id="lastName" required name="lastName" ng-model="subscriber.lastName"
+                               minlength="3" maxlength="30" ng-pattern="/^[A-Z][-a-zA-Z]+$/">
+                        <div ng-messages="subscriberForm.lastName.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un nume valid !
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block new-book-fields">
+                        <md-icon md-svg-icon="images/user.svg"></md-icon>
+                        <label for="firstName">Prenume</label>
+                        <input id="firstName" required name="firstName" ng-model="subscriber.firstName"
+                               minlength="3" maxlength="30" ng-pattern="/^[A-Z][-a-zA-Z]+$/">
+                        <div ng-messages="subscriberForm.firstName.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un prenume valid !
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <md-icon md-svg-icon="images/smartphone.svg"></md-icon>
+                        <label for="phoneNumber">Numar de telefon</label>
+                        <input id="phoneNumber" required name="phoneNumber" ng-model="subscriber.phoneNumber"
+                               minlength="10" maxlength="10" ng-pattern="/^07[0-9]{8}$/">
+                        <div ng-messages="subscriberForm.phoneNumber.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un numar de telefon valid !
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+                    <div class="fileUpload md-primary menu-button md-button md-ink-ripple">
+                        <span>
+                            <md-icon md-svg-src="images/picture.svg"></md-icon>
+                            Adaugati poza de profil
+                        </span>
+                        <input type="file" class="upload" file-model="subscriberPicture"/>
+                    </div>
+                </div>
+
+                <div layout="row" class="dialog-button">
+                    <md-button class="md-fab circle-button close-button" aria-label="Eat cake" ng-click="closeDialog()">
+                        <md-icon md-svg-src="images/error.svg"></md-icon>
+                    </md-button>
+                    <md-button type="submit" class="md-fab circle-button confirm-button" aria-label="Eat cake">
+                        <md-icon md-svg-src="images/success.svg"></md-icon>
+                    </md-button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
