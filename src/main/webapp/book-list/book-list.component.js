@@ -6,8 +6,8 @@
 
 angular.module('libraryApp').component('bookList', {
     templateUrl: 'book-list/book-list.template.html',
-    controller: ['Book', 'Category', '$mdPanel', '$rootScope', '$http',
-        function BookListController(Book, Category, $mdPanel, $rootScope, $http) {
+    controller: ['Book', 'Category', '$mdPanel', '$rootScope', '$http', '$location',
+        function BookListController(Book, Category, $mdPanel, $rootScope, $http, $location) {
             var that = this;
             this.books = Book.query();
             this.categories = Category.query();
@@ -62,7 +62,13 @@ angular.module('libraryApp').component('bookList', {
                     that.books = response.data;
                 });
 
-            }
+            };
+
+            this.bookDetails = function (book) {
+
+                $location.path("/book/details/" + book.id);
+
+            };
 
         }
     ]
