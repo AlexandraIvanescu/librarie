@@ -54,6 +54,12 @@ public class LibraryController {
         return bookService.getAllBooks();
     }
 
+    @RequestMapping(path = "/library/get/book/details", params = {"bookId"})
+    @ResponseBody
+    public Book getBooksDetails(@RequestParam(value = "bookId") int categoryId) {
+        return bookService.getBookById(categoryId);
+    }
+
     @RequestMapping(path = "/library/get/books/search", params = {"title", "author", "categoryId"})
     @ResponseBody
     public List<Book> getBooksSearch(@RequestParam(value = "title") String title, @RequestParam(value = "author") String author, @RequestParam(value = "categoryId") int categoryId) {
