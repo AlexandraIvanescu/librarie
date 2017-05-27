@@ -56,6 +56,10 @@ angular.module('libraryApp').component('subscribers', {
                     that.subscribers = response.data;
                 });
 
+            };
+
+            $scope.subscriberDetails = function (subscriber) {
+                $location.path("/subscriber/details/" + subscriber.id);
             }
 
         }

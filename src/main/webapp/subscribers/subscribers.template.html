@@ -32,7 +32,7 @@
 <div class="container-fluid book-content">
     <div class="row">
         <div class="col-md-3" ng-repeat="subscriber in subscribers">
-            <md-card>
+            <md-card ng-click="subscriberDetails(subscriber)">
                 <img ng-src="{{'images/subscribers/' + subscriber.image}}" class="md-card-image" alt="Washed Out">
                 <md-card-title>
                     <md-card-title-text>

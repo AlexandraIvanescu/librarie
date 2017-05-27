@@ -45,6 +45,16 @@ public class SubscriberService {
         return subscribers;
     }
 
+    public Subscriber getSubscriberById(int subscriberId) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        Subscriber subscriber = subscriberRepository.findSubscriberByIdAndLibraryEmail(subscriberId, library.getEmail());
+
+        subscriber.setLibrary(null);
+
+        return subscriber;
+    }
+
     public boolean addSubscriber(Subscriber book) {
         Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
 
