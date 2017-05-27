@@ -41,6 +41,12 @@ angular.module('libraryApp').config(['$locationProvider', '$routeProvider', '$ht
                 loginRequired: true,
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).when('/subscriber/details/:id', {
+            template: '<subscriber-details></subscriber-details>',
+            access: {
+                loginRequired: true,
+                authorizedRoles: [USER_ROLES.user]
+            }
         }).when('/settings', {
             template: '<settings></settings>',
             access: {

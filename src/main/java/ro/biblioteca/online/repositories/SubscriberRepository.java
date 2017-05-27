@@ -23,4 +23,6 @@ public interface SubscriberRepository extends JpaRepository<Subscriber, Integer>
             "AND LOWER(s.lastName) LIKE LOWER(CONCAT('%', ?3, '%'))")
     List<Subscriber> findSubscribersByLibraryEmailAndFirstNameAndLastName(String email, String firstName, String lastName);
 
+    Subscriber findSubscriberByIdAndLibraryEmail(int id, String email);
+
 }

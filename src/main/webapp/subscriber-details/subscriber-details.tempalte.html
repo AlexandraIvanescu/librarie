@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <md-card>
+                <img ng-src="{{'images/subscribers/' + subscriber.image}}" class="md-card-image" style="height: 350px;">
+            </md-card>
+        </div>
+        <div class="col-md-8">
+            <md-card style="height: 350px;">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" style="font-size: 20px;">{{'Nume de familie : ' + subscriber.lastName}}</span>
+                        <span class="md-headline"
+                              style="font-size: 20px;">{{'Prenume : ' + subscriber.firstName}}</span>
+                        <span class="md-headline"
+                              style="font-size: 20px;">{{'Email : ' + subscriber.email}}</span>
+                        <span class="md-headline"
+                              style="font-size: 20px;">{{'Numar de telefon : ' + subscriber.phoneNumber}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </div>
+</div>
