@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * Created by Alexandra Ale on 25.02.2017.
  */
+
 @Service
 public class BookService {
 
@@ -86,5 +87,18 @@ public class BookService {
 
         return true;
     }
+
+
+    public Book getBookById(int id) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        Book book = bookRepository.findBookByIdAndLibraryEmail(id, library.getEmail());
+
+        book.setLibrary(null);
+        book.setCategory(null);
+
+        return book;
+    }
+
 
 }

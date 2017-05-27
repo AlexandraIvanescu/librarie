@@ -44,7 +44,7 @@
 <div class="container-fluid book-content">
     <div class="row">
         <div class="col-md-3" ng-repeat="book in $ctrl.books">
-            <md-card>
+            <md-card ng-click="$ctrl.bookDetails(book)">
                 <img ng-src="{{'images/books/' + book.image}}" class="md-card-image" alt="Washed Out"
                      style="height: 200px;">
                 <md-card-title>

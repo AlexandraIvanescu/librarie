@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <md-card>
+                <img ng-src="{{'images/books/' + book.image}}" class="md-card-image" style="height: 350px;">
+            </md-card>
+        </div>
+        <div class="col-md-8">
+            <md-card style="height: 350px;">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" style="font-size: 20px;">{{'Titlu : ' + book.title}}</span>
+                        <span class="md-headline" style="font-size: 20px;">{{'Autor : ' + book.author}}</span>
+                        <span class="md-headline" style="font-size: 20px;">{{'Numar de pagini : ' + book.pageNumber}}</span>
+                        <span class="md-headline" style="font-size: 20px;">{{'Data aparitiei : ' + book.releaseDate}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </div>
+</div>
