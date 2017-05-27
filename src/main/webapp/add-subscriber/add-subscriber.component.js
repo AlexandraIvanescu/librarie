@@ -8,12 +8,37 @@ angular.module('libraryApp').component('addSubscriber', {
     controller: ['$scope', '$location', '$http', '$rootScope',
         function AddSubscriberController($scope, $location, $http, $rootScope) {
             $scope.subscriber = {};
+            $scope.windowTitle = 'Adaugati un nou abonat';
 
             $scope.closeDialog = function () {
                 closePoPup();
             };
 
-            $scope.newSubscriber = function () {
+            if ($rootScope.updateSubscriber) {
+                $scope.subscriber = $rootScope.subscriber;
+                $scope.windowTitle = 'Actualizati abonatul';
+            }
+
+
+            var updateSubscriber = function () {
+
+                var req = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/library/add/subscriber',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: $scope.subscriber
+                };
+
+                $http(req).then(function () {
+                    closePoPup();
+                });
+
+            };
+
+            var newSubscriber = function () {
 
                 $scope.subscriber.image = $scope.subscriberPicture.name;
 
@@ -48,9 +73,25 @@ angular.module('libraryApp').component('addSubscriber', {
             };
 
 
+            $scope.saveSubscriber = function () {
+
+                if ($rootScope.updateSubscriber) {
+                    updateSubscriber();
+                } else {
+                    newSubscriber();
+                }
+
+            };
+
             function closePoPup() {
                 $rootScope.panelRef && $rootScope.panelRef.close().then(function () {
-                    $rootScope.getAllSubscriber();
+
+                    if ($rootScope.updateSubscriber) {
+                        $rootScope.getSubscriber();
+                    } else {
+                        $rootScope.getAllSubscriber();
+                    }
+
                     angular.element(document.querySelector('.dialog-button')).focus();
                     $rootScope.panelRef.destroy();
                 });

@@ -9,15 +9,34 @@
             <md-card style="height: 350px;">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline" style="font-size: 20px;">{{'Nume de familie : ' + subscriber.lastName}}</span>
-                        <span class="md-headline"
-                              style="font-size: 20px;">{{'Prenume : ' + subscriber.firstName}}</span>
-                        <span class="md-headline"
-                              style="font-size: 20px;">{{'Email : ' + subscriber.email}}</span>
-                        <span class="md-headline"
-                              style="font-size: 20px;">{{'Numar de telefon : ' + subscriber.phoneNumber}}</span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/users_2.svg"></md-icon>
+                            <strong>Nume de familie : </strong> {{subscriber.lastName}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/user.svg"></md-icon>
+                            <strong>Prenume : </strong> {{subscriber.firstName}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/email.svg"></md-icon>
+                            <strong>Email : </strong> {{subscriber.email}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/smartphone.svg"></md-icon>
+                            <strong>Numar de telefon : </strong> {{subscriber.phoneNumber}}
+                        </span>
                     </md-card-title-text>
                 </md-card-title>
+                <md-card-actions layout="row" layout-align="center">
+                    <md-button type="submit" aria-label="Eat cake" ng-click="updateSubscriber()" class="md-primary">
+                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
+                        <span>Actualizare</span>
+                    </md-button>
+                    <md-button aria-label="Eat cake" ng-click="deleteSubscriber()" class="md-warn">
+                        <md-icon md-svg-src="images/delete.svg"></md-icon>
+                        <span>Sterge</span>
+                    </md-button>
+                </md-card-actions>
             </md-card>
         </div>
     </div>

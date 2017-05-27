@@ -126,4 +126,10 @@ public class LibraryController {
         return subscriberService.addPicture(picture);
     }
 
+    @RequestMapping(value = "/library/delete/subscriber", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean delteSubscriber(@RequestBody Subscriber subscriber) {
+        return subscriberService.deleteSubscriber(subscriber);
+    }
+
 }
