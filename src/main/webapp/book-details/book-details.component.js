@@ -7,8 +7,8 @@
 
 angular.module('libraryApp').component('bookDetails', {
     templateUrl: 'book-details/book-details.template.html',
-    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope',
-        function BookDetailsController($mdPanel, $rootScope, $http, $location, $scope) {
+    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope', 'DateToStringService',
+        function BookDetailsController($mdPanel, $rootScope, $http, $location, $scope, DateToStringService) {
 
             var path = $location.path().split("/");
             var bookId = path[path.length - 1];
@@ -26,6 +26,11 @@ angular.module('libraryApp').component('bookDetails', {
 
             $http(req).then(function (response) {
                 $scope.book = response.data;
+
+                var releaseDate = new Date($scope.book.releaseDate);
+
+                $scope.book.releaseDate = DateToStringService.dateToString(releaseDate);
+
             });
 
         }]
