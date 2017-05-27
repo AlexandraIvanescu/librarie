@@ -104,5 +104,11 @@ public class BookService {
         return book;
     }
 
+    public boolean deleteBook(Book book) {
+
+        bookRepository.delete(book);
+
+        return true;
+    }
 
 }

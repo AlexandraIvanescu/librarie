@@ -71,6 +71,27 @@ angular.module('libraryApp').component('bookDetails', {
 
             $scope.deleteBook = function () {
 
+                var position = $mdPanel.newPanelPosition()
+                    .absolute()
+                    .center();
+
+                var config = {
+                    attachTo: angular.element(document.body),
+                    template: '<delete-book></delete-book>',
+                    hasBackdrop: true,
+                    panelClass: 'new-post',
+                    position: position,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    disableParentScroll: true,
+                    trapFocus: true
+                };
+
+                $rootScope.delteBook = $scope.book;
+
+                $mdPanel.open(config).then(function (result) {
+                    $rootScope.panelRef = result;
+                });
 
             };
 

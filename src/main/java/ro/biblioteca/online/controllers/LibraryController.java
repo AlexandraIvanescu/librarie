@@ -84,6 +84,12 @@ public class LibraryController {
         return bookService.addBook(book);
     }
 
+    @RequestMapping(value = "/library/delete/book", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean delteBook(@RequestBody Book book) {
+        return bookService.deleteBook(book);
+    }
+
     @RequestMapping(value = "/library/add/picture", method = RequestMethod.POST)
     @ResponseBody
     public boolean addPicture(@RequestParam(value = "picture") MultipartFile picture) {
