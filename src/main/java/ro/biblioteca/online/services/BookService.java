@@ -95,7 +95,11 @@ public class BookService {
         Book book = bookRepository.findBookByIdAndLibraryEmail(id, library.getEmail());
 
         book.setLibrary(null);
-        book.setCategory(null);
+
+        Category category = book.getCategory();
+        category.setBooks(null);
+
+        book.setCategory(category);
 
         return book;
     }

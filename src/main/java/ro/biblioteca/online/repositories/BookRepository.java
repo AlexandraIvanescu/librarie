@@ -30,6 +30,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "AND LOWER(b.author) LIKE LOWER(CONCAT('%', ?3, '%'))")
     List<Book> findBooksByLibraryEmailAndTitleAndAuthor(String email, String title, String author);
 
+    @Query("SELECT b " +
+            "FROM Book b JOIN FETCH b.category " +
+            "WHERE b.id = ?1 " +
+            "AND b.library.email = ?2")
     Book findBookByIdAndLibraryEmail(int id, String email);
 
 }

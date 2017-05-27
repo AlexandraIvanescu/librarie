@@ -13,25 +13,66 @@ angular.module('libraryApp').component('bookDetails', {
             var path = $location.path().split("/");
             var bookId = path[path.length - 1];
 
-            var url = '/library/get/book/details?bookId=' + bookId;
 
-            var req = {
-                method: 'GET',
-                dataType: 'json',
-                url: url,
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
-                }
+            var getBook = function () {
+
+                var url = '/library/get/book/details?bookId=' + bookId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.book = response.data;
+
+                    var releaseDate = new Date($scope.book.releaseDate);
+
+                    $scope.book.releaseDateToString = DateToStringService.dateToString(releaseDate);
+
+                });
+
             };
 
-            $http(req).then(function (response) {
-                $scope.book = response.data;
+            getBook();
 
-                var releaseDate = new Date($scope.book.releaseDate);
+            $scope.updateBook = function () {
 
-                $scope.book.releaseDate = DateToStringService.dateToString(releaseDate);
+                var position = $mdPanel.newPanelPosition()
+                    .absolute()
+                    .center();
 
-            });
+                var config = {
+                    attachTo: angular.element(document.body),
+                    template: '<add-book></add-book>',
+                    hasBackdrop: true,
+                    panelClass: 'new-post',
+                    position: position,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    disableParentScroll: true,
+                    trapFocus: true
+                };
+
+                $rootScope.updateBook = true;
+                $rootScope.book = $scope.book;
+
+                $mdPanel.open(config).then(function (result) {
+                    $rootScope.panelRef = result;
+                    $rootScope.getBook = getBook;
+                });
+
+            };
+
+
+            $scope.deleteBook = function () {
+
+
+            };
 
         }]
 });

@@ -9,12 +9,38 @@
             <md-card style="height: 350px;">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline" style="font-size: 20px;">{{'Titlu : ' + book.title}}</span>
-                        <span class="md-headline" style="font-size: 20px;">{{'Autor : ' + book.author}}</span>
-                        <span class="md-headline" style="font-size: 20px;">{{'Numar de pagini : ' + book.pageNumber}}</span>
-                        <span class="md-headline" style="font-size: 20px;">{{'Data aparitiei : ' + book.releaseDate}}</span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+                            <strong>Titlu : </strong>{{book.title}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
+                            <strong>Autor : </strong>{{book.author}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-icon="images/numbers.svg"></md-icon>
+                            <strong>Numar de pagini : </strong>{{book.pageNumber}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-src="images/calendar.svg"></md-icon>
+                            <strong>Data aparitiei : </strong>{{book.releaseDateToString}}
+                        </span>
+                        <span class="md-headline" style="font-size: 20px;">
+                            <md-icon md-svg-src="images/folder.svg"></md-icon>
+                            <strong>Categorie : </strong>{{book.category.name}}
+                        </span>
                     </md-card-title-text>
                 </md-card-title>
+                <md-card-actions layout="row" layout-align="center">
+                    <md-button type="submit" aria-label="Eat cake" ng-click="updateBook()" class="md-primary">
+                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
+                        <span>Actualizare</span>
+                    </md-button>
+                    <md-button aria-label="Eat cake" ng-click="deleteBook()" class="md-warn">
+                        <md-icon md-svg-src="images/delete.svg"></md-icon>
+                        <span>Sterge</span>
+                    </md-button>
+                </md-card-actions>
             </md-card>
         </div>
     </div>
