@@ -56,8 +56,34 @@ angular.module('libraryApp').component('subscriberDetails', {
                     $rootScope.getSubscriber = getSubscriber;
                 });
 
-            }
+            };
 
+
+            $scope.deleteSubscriber = function () {
+
+                var position = $mdPanel.newPanelPosition()
+                    .absolute()
+                    .center();
+
+                var config = {
+                    attachTo: angular.element(document.body),
+                    template: '<delete-subscriber></delete-subscriber>',
+                    hasBackdrop: true,
+                    panelClass: 'new-post',
+                    position: position,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    disableParentScroll: true,
+                    trapFocus: true
+                };
+
+                $rootScope.deleteSubscriber = $scope.subscriber;
+
+                $mdPanel.open(config).then(function (result) {
+                    $rootScope.panelRef = result;
+                });
+
+            }
 
         }]
 });

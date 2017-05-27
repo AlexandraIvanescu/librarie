@@ -80,4 +80,11 @@ public class SubscriberService {
         return true;
     }
 
+    public boolean deleteSubscriber(Subscriber subscriber) {
+
+        subscriberRepository.delete(subscriber);
+
+        return true;
+    }
+
 }

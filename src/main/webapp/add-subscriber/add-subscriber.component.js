@@ -8,6 +8,7 @@ angular.module('libraryApp').component('addSubscriber', {
     controller: ['$scope', '$location', '$http', '$rootScope',
         function AddSubscriberController($scope, $location, $http, $rootScope) {
             $scope.subscriber = {};
+            $scope.windowTitle = 'Adaugati un nou abonat';
 
             $scope.closeDialog = function () {
                 closePoPup();
@@ -15,6 +16,7 @@ angular.module('libraryApp').component('addSubscriber', {
 
             if ($rootScope.updateSubscriber) {
                 $scope.subscriber = $rootScope.subscriber;
+                $scope.windowTitle = 'Actualizati abonatul';
             }
 
 
