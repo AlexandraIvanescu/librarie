@@ -2,12 +2,12 @@
     <div role="dialog" layout="column" layout-align="center center">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h3>Adaugati o noua carte</h3>
+                <h3>{{windowTitle}}</h3>
             </div>
         </md-toolbar>
 
         <div class="new-post-container">
-            <form role="form" name="bookForm" ng-submit="newBook()">
+            <form role="form" name="bookForm" ng-submit="saveBook()">
 
                 <div layout="row">
                     <md-input-container class="md-block new-book-fields">

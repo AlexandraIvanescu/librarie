@@ -34,6 +34,8 @@ angular.module('libraryApp').component('bookList', {
                     trapFocus: true
                 };
 
+                $rootScope.updateBook = false;
+
                 $mdPanel.open(config).then(function (result) {
                     $rootScope.panelRef = result;
                     $rootScope.getAllBooks = function () {
