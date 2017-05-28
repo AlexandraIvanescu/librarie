@@ -55,12 +55,12 @@ public class SubscriberService {
         return subscriber;
     }
 
-    public boolean addSubscriber(Subscriber book) {
+    public boolean addSubscriber(Subscriber subscriber) {
         Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
 
-        book.setLibrary(library);
+        subscriber.setLibrary(library);
 
-        subscriberRepository.saveAndFlush(book);
+        subscriberRepository.saveAndFlush(subscriber);
 
         return true;
     }
