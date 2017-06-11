@@ -7,6 +7,10 @@ angular.module('libraryApp').component('settings', {
     controller: ['$scope', '$location', '$http',
         function SubscribersController($scope, $location, $http) {
 
+            $scope.change = {};
+            $scope.change.email = "biblioteca@romania.ro";
+            $scope.change.name = "Biblioteca Nationala";
+
         }
     ]
 });
