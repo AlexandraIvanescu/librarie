@@ -1,0 +1,51 @@
+<div>
+    <div role="dialog" layout="column" layout-align="center center">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Imprumutati o carte</h3>
+            </div>
+        </md-toolbar>
+
+        <div class="new-post-container">
+            <form role="form" name="bookForm" ng-submit="saveBorrow()">
+                <div layout="row">
+                    <md-input-container class="md-block new-post-label">
+                        <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+                        <label>Carte</label>
+                        <md-select name="category" ng-model="book.categoryIndex" required>
+                            <md-option>
+                                Ingeri si demoni - Dan Brown
+                            </md-option>
+                            <md-option>
+                                The Girl on the Train - Paula Hawkins
+                            </md-option>
+                            <md-option>
+                                A Game of Thrones - George Martin
+                            </md-option>
+                            <md-option>
+                                Maitreyi - Mircea Eliad
+                            </md-option>
+                            <md-option>
+                                Hobbitul - Tolkien
+                            </md-option>
+                        </md-select>
+                        <div class="validation-messages" ng-messages="bookForm.category.$error">
+                            <div ng-message-exp="['required']">
+                                Selectati o carte !
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" class="dialog-button" style="padding-top: 50px;">
+                    <md-button class="md-fab circle-button close-button" aria-label="Eat cake" ng-click="closeDialog()">
+                        <md-icon md-svg-src="images/error.svg"></md-icon>
+                    </md-button>
+                    <md-button type="submit" class="md-fab circle-button confirm-button" aria-label="Eat cake">
+                        <md-icon md-svg-src="images/success.svg"></md-icon>
+                    </md-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

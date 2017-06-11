@@ -3,6 +3,7 @@ package ro.biblioteca.online.models;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 /**
  * Created by Alexandra Ale on 17/05/2017.
@@ -40,6 +41,9 @@ public class Subscriber {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "library_id", nullable = false)
     private Library library;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscriber")
+    private Set<Borrow> borrows;
 
     public Integer getId() {
         return id;
@@ -95,5 +99,13 @@ public class Subscriber {
 
     public void setLibrary(Library library) {
         this.library = library;
+    }
+
+    public Set<Borrow> getBorrows() {
+        return borrows;
+    }
+
+    public void setBorrows(Set<Borrow> borrows) {
+        this.borrows = borrows;
     }
 }

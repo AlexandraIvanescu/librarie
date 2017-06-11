@@ -40,4 +40,131 @@
             </md-card>
         </div>
     </div>
+    <div class="col-md-12">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div style="text-align: center; padding-bottom: 30px;">
+                        <span class="md-headline">Carti imprumutate</span>
+                    </div>
+                    <div layout="row">
+                        <div>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+                                <label for="title">Titlu</label>
+                                <input id="title" name="title" ng-model="$ctrl.title" minlength="3" maxlength="30">
+                            </md-input-container>
+                        </div>
+                        <div>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
+                                <label for="author">Autor</label>
+                                <input id="author" name="author" ng-model="$ctrl.author" minlength="3" maxlength="30">
+                            </md-input-container>
+                        </div>
+                        <div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <label>Data de inceput</label>
+                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                               md-max-date="maxDate"></md-datepicker>
+                                <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
+                                    <div ng-message-exp="['required', 'maxdate']">
+                                        Introduceti o data valida !
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <label>Data de sfarsit</label>
+                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                               md-max-date="maxDate"></md-datepicker>
+                                <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
+                                    <div ng-message-exp="['required', 'maxdate']">
+                                        Introduceti o data valida !
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div>
+                            <md-button class="md-fab button-search" aria-label="Eat cake">
+                                <md-icon md-svg-src="images/search.svg"></md-icon>
+                            </md-button>
+                        </div>
+                        <div style="text-align: right">
+                            <md-button class="md-fab button-add" aria-label="Eat cake" ng-click="addBorrow()">
+                                <md-icon md-svg-src="images/plus.svg"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table table-condensed table-bordered librery-table">
+                            <thead>
+                            <tr>
+                                <th>Titlu</th>
+                                <th>Nume Autor</th>
+                                <th>Data de inceput</th>
+                                <th>Data de sfarsit</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="warning">
+                                <td>Shogun</td>
+                                <td>James Clavell</td>
+                                <td>20-05-2017</td>
+                                <td>20-06-2017</td>
+                                <td>
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
+                                        <span>Prelungeste</span>
+                                    </md-button>
+                                    <md-button aria-label="Eat cake" class="md-warn">
+                                        <md-icon md-svg-src="images/delete.svg"></md-icon>
+                                        <span>Sterge</span>
+                                    </md-button>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>Zece negrii mititei</td>
+                                <td>Agatha Christie</td>
+                                <td>10-05-2017</td>
+                                <td>10-06-2017</td>
+                                <td>
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
+                                        <span>Prelungeste</span>
+                                    </md-button>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>Cartea junglei</td>
+                                <td>Rudyard Kipling</td>
+                                <td>10-05-2017</td>
+                                <td>10-06-2017</td>
+                                <td></td>
+                            </tr>
+                            <tr class="success">
+                                <td>Sherlock Holmes</td>
+                                <td>Arthur Conan Doyle</td>
+                                <td>10-05-2017</td>
+                                <td>10-06-2017</td>
+                                <td></td>
+                            </tr>
+                            <tr class="success">
+                                <td>Adultery</td>
+                                <td>Paulo Coehlo</td>
+                                <td>10-04-2017</td>
+                                <td>10-05-2017</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+        </md-card>
+    </div>
 </div>
