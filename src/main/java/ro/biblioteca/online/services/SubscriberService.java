@@ -32,7 +32,10 @@ public class SubscriberService {
     public List<Subscriber> getAllSubscribers() {
         List<Subscriber> subscribers = subscriberRepository.findSubscribersByLibraryEmail(SecurityUtils.getCurrentLogin());
 
-        subscribers.forEach(subscriber -> subscriber.setLibrary(null));
+        subscribers.forEach(subscriber -> {
+            subscriber.setLibrary(null);
+            subscriber.setBorrows(null);
+        });
 
         return subscribers;
     }
@@ -40,7 +43,10 @@ public class SubscriberService {
     public List<Subscriber> getAllSubscribers(String firstName, String lastName) {
         List<Subscriber> subscribers = subscriberRepository.findSubscribersByLibraryEmailAndFirstNameAndLastName(SecurityUtils.getCurrentLogin(), firstName, lastName);
 
-        subscribers.forEach(subscriber -> subscriber.setLibrary(null));
+        subscribers.forEach(subscriber -> {
+            subscriber.setLibrary(null);
+            subscriber.setBorrows(null);
+        });
 
         return subscribers;
     }
@@ -51,6 +57,7 @@ public class SubscriberService {
         Subscriber subscriber = subscriberRepository.findSubscriberByIdAndLibraryEmail(subscriberId, library.getEmail());
 
         subscriber.setLibrary(null);
+        subscriber.setBorrows(null);
 
         return subscriber;
     }
