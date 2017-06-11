@@ -8,5 +8,6 @@ angular.module('libraryApp', ['ngRoute',
     'ngMessages',
     'http-auth-interceptor',
     'ngResource',
-    'LocalStorageModule']);
+    'LocalStorageModule',
+    'chart.js']);
 

@@ -1,3 +1,81 @@
 <div layout="column" layout-align="top center">
-    Home Page
+    <div class="row">
+        <div class="col-md-12" style="text-align: center; font-size: 15px;">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">
+                            <strong>Bine ati venit!</strong>
+                        </span>
+                        <br>
+                        <span class="md-headline">
+                            Aceasta aplicatie isi propune realizarea unui sistem online de gestiune a unei biblioteci fizice.
+                            Scopul implementarii acestei aplicatii il constituie permiterea unei manipulari mult mai sigura,
+                            mai facila si mai rapida a datelor.
+                        </span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+        <div class="col-md-4" style="margin-top: 100px;">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <div style="text-align: center; font-size: 15px; margin-bottom: 20px">
+                            <span class="md-headline"><strong>Carti</strong></span>
+                        </div>
+                        <div style="max-width: 280px; text-align: center;">
+                            <canvas id="pie" class="chart chart-pie" chart-data="data_book" chart-labels="labels_book"
+                                    chart-options="options">
+                            </canvas>
+                        </div>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+        <div class="col-md-4" style="margin-top: 100px;">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <div style="text-align:center; font-size: 15px; margin-bottom: 20px">
+                            <span class="md-headline"><strong>Abonati</strong></span>
+                        </div>
+                        <div style="max-width: 280px; text-align: center;">
+                            <canvas id="pie" class="chart chart-pie" chart-data="data_subscriber"
+                                    chart-labels="labels_subscriber"
+                                    chart-options="options">
+                            </canvas>
+                        </div>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+        <div class="col-md-4" style="margin-top: 100px;">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <div style="text-align: center; font-size: 15px; margin-bottom: 20px">
+                            <span class="md-headline"><strong>Scurtaturi</strong></span>
+                        </div>
+                        <div>
+                            <md-button md-no-ink class="md-primary">
+                                <md-icon md-svg-icon="images/agenda.svg"></md-icon>
+                                Adauga carte
+                            </md-button>
+                            <br>
+                            <md-button md-no-ink class="md-primary">
+                                <md-icon md-svg-icon="images/users_2.svg"></md-icon>
+                                Adauga abonat
+                            </md-button>
+                            <br>
+                            <md-button md-no-ink class="md-primary">
+                                <md-icon md-svg-icon="images/folder.svg"></md-icon>
+                                Adauga categorie
+                            </md-button>
+                        </div>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </div>
 </div>
