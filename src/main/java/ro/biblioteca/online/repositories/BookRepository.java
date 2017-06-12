@@ -36,4 +36,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "AND b.library.email = ?2")
     Book findBookByIdAndLibraryEmail(int id, String email);
 
+    @Query("SELECT b from Book b " +
+            "WHERE b.library.email = ?1 " +
+            "AND b.id NOT IN (SELECT br.bookId FROM Borrow br WHERE br.isBorrowed = 1) " +
+            "ORDER BY b.title")
+    List<Book> findBooksByLibraryEmailAndNotBorrowed(String email);
+
 }

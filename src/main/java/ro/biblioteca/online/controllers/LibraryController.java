@@ -54,6 +54,12 @@ public class LibraryController {
         return bookService.getAllBooks();
     }
 
+    @RequestMapping("/library/get/books/not-borrowed")
+    @ResponseBody
+    public List<Book> getAllBooksNotBorrowed() {
+        return bookService.getAllBooksNotBorrowed();
+    }
+
     @RequestMapping(path = "/library/get/book/details", params = {"bookId"})
     @ResponseBody
     public Book getBooksDetails(@RequestParam(value = "bookId") int categoryId) {

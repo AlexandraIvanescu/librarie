@@ -111,4 +111,16 @@ public class BookService {
         return true;
     }
 
+    public List<Book> getAllBooksNotBorrowed() {
+
+        List<Book> books = bookRepository.findBooksByLibraryEmailAndNotBorrowed(SecurityUtils.getCurrentLogin());
+
+        books.forEach(book -> {
+            book.setLibrary(null);
+            book.setCategory(null);
+        });
+
+        return books;
+    }
+
 }

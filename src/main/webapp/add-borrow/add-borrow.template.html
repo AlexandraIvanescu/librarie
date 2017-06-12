@@ -12,21 +12,9 @@
                     <md-input-container class="md-block new-post-label">
                         <md-icon md-svg-icon="images/agenda.svg"></md-icon>
                         <label>Carte</label>
-                        <md-select name="category" ng-model="book.categoryIndex" required>
-                            <md-option>
-                                Ingeri si demoni - Dan Brown
-                            </md-option>
-                            <md-option>
-                                The Girl on the Train - Paula Hawkins
-                            </md-option>
-                            <md-option>
-                                A Game of Thrones - George Martin
-                            </md-option>
-                            <md-option>
-                                Maitreyi - Mircea Eliad
-                            </md-option>
-                            <md-option>
-                                Hobbitul - Tolkien
+                        <md-select name="category" required ng-model="bookId">
+                            <md-option ng-repeat="book in books" value="{{book.id}}">
+                                {{book.title + " - " + book.author}}
                             </md-option>
                         </md-select>
                         <div class="validation-messages" ng-messages="bookForm.category.$error">
