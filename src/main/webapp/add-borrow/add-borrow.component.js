@@ -4,9 +4,8 @@
 
 angular.module('libraryApp').component('addBorrow', {
     templateUrl: 'add-borrow/add-borrow.template.html',
-    controller: ['$scope', '$location', '$http', '$rootScope',
-        function AddBorrowController($scope, $location, $http, $rootScope) {
-
+    controller: ['$scope', '$http', '$rootScope', '$route',
+        function AddBorrowController($scope, $http, $rootScope, $route) {
 
             var req = {
                 method: 'GET',
@@ -29,6 +28,21 @@ angular.module('libraryApp').component('addBorrow', {
             };
 
             $scope.saveBorrow = function () {
+
+                var req = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/library/add/borrow',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: {subscriber: $rootScope.subscriber, bookId: $scope.bookId}
+                };
+
+                $http(req).then(function (response) {
+                    $route.reload();
+                    $scope.closeDialog();
+                });
 
             };
 

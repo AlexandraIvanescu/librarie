@@ -4,14 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ro.biblioteca.online.config.SecurityUtils;
-import ro.biblioteca.online.models.Book;
-import ro.biblioteca.online.models.Category;
-import ro.biblioteca.online.models.Library;
-import ro.biblioteca.online.models.Subscriber;
-import ro.biblioteca.online.services.BookService;
-import ro.biblioteca.online.services.CategoryService;
-import ro.biblioteca.online.services.LibraryService;
-import ro.biblioteca.online.services.SubscriberService;
+import ro.biblioteca.online.models.*;
+import ro.biblioteca.online.services.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,13 +22,18 @@ public class LibraryController {
     private LibraryService libraryService;
     private CategoryService categoryService;
     private SubscriberService subscriberService;
+    private BorrowService borrowService;
 
     @Autowired
-    public LibraryController(BookService bookService, LibraryService libraryService, CategoryService categoryService, SubscriberService subscriberService) {
+    public LibraryController(BookService bookService, LibraryService libraryService,
+                             CategoryService categoryService, SubscriberService subscriberService,
+                             BorrowService borrowService) {
+
         this.bookService = bookService;
         this.libraryService = libraryService;
         this.categoryService = categoryService;
         this.subscriberService = subscriberService;
+        this.borrowService = borrowService;
     }
 
 
@@ -136,6 +135,12 @@ public class LibraryController {
     @ResponseBody
     public boolean delteSubscriber(@RequestBody Subscriber subscriber) {
         return subscriberService.deleteSubscriber(subscriber);
+    }
+
+    @RequestMapping(value = "/library/add/borrow", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addBorrow(@RequestBody Borrow borrow) {
+        return borrowService.addBorrow(borrow);
     }
 
 }

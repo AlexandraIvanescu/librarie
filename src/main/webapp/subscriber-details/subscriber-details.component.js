@@ -102,6 +102,8 @@ angular.module('libraryApp').component('subscriberDetails', {
                     trapFocus: true
                 };
 
+                $rootScope.subscriber = $scope.subscriber;
+
                 $mdPanel.open(config).then(function (result) {
                     $rootScope.panelRef = result;
                 });
