@@ -14,6 +14,8 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
+    Book findBookById(int id);
+
     @Query("SELECT b from Book b WHERE b.library.email = ?1")
     List<Book> findBooksByLibraryEmail(String email);
 

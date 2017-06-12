@@ -64,7 +64,8 @@
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de inceput</label>
                                 <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
                                                md-max-date="maxDate"></md-datepicker>
@@ -77,7 +78,8 @@
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de sfarsit</label>
                                 <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
                                                md-max-date="maxDate"></md-datepicker>
@@ -111,12 +113,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="warning">
-                                <td>Shogun</td>
-                                <td>James Clavell</td>
-                                <td>20-05-2017</td>
-                                <td>20-06-2017</td>
-                                <td>
+                            <tr ng-repeat="borrow in borrows"
+                                ng-class="borrow.borrow.borrowed ? (currentDate <= borrow.borrow.endDate ? 'warning' : 'danger'):'success'">
+                                <td>{{borrow.book.title}}</td>
+                                <td>{{borrow.book.author}}</td>
+                                <td>{{borrow.startDate}}</td>
+                                <td>{{borrow.endDate}}</td>
+                                <td ng-if="borrow.borrow.borrowed && currentDate <= borrow.borrow.endDate">
                                     <md-button type="submit" aria-label="Eat cake" class="md-primary">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
@@ -126,39 +129,18 @@
                                         <span>Sterge</span>
                                     </md-button>
                                 </td>
-                            </tr>
-                            <tr class="danger">
-                                <td>Zece negrii mititei</td>
-                                <td>Agatha Christie</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td>
+                                <td ng-if="borrow.borrow.borrowed && currentDate > borrow.borrow.endDate">
                                     <md-button type="submit" aria-label="Eat cake" class="md-primary">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
                                     </md-button>
                                 </td>
-                            </tr>
-                            <tr class="success">
-                                <td>Cartea junglei</td>
-                                <td>Rudyard Kipling</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td></td>
-                            </tr>
-                            <tr class="success">
-                                <td>Sherlock Holmes</td>
-                                <td>Arthur Conan Doyle</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td></td>
-                            </tr>
-                            <tr class="success">
-                                <td>Adultery</td>
-                                <td>Paulo Coehlo</td>
-                                <td>10-04-2017</td>
-                                <td>10-05-2017</td>
-                                <td></td>
+                                <td ng-if="!borrow.borrow.borrowed">
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
+                                        <span>Prelungeste</span>
+                                    </md-button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

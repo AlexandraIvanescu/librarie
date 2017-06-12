@@ -4,11 +4,12 @@
 
 angular.module('libraryApp').component('subscriberDetails', {
     templateUrl: 'subscriber-details/subscriber-details.tempalte.html',
-    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope',
-        function SubscriberDetailsController($mdPanel, $rootScope, $http, $location, $scope) {
+    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope', 'DateToStringService',
+        function SubscriberDetailsController($mdPanel, $rootScope, $http, $location, $scope, DateToStringService) {
 
             var path = $location.path().split("/");
             var subscriberId = path[path.length - 1];
+            $scope.currentDate = new Date();
 
 
             var getSubscriber = function () {
@@ -28,7 +29,33 @@ angular.module('libraryApp').component('subscriberDetails', {
                 });
             };
 
+            var getBorrow = function () {
+
+                var url = '/library/add/borrow?subscriberId=' + subscriberId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.borrows = response.data;
+
+                    $scope.borrows.forEach(function (borrow) {
+                        borrow.startDate = DateToStringService.dateToString(new Date(borrow.borrow.startDate));
+                        borrow.endDate = DateToStringService.dateToString(new Date(borrow.borrow.endDate));
+                    });
+
+                });
+
+            };
+
             getSubscriber();
+            getBorrow();
 
             $scope.updateSubscriber = function () {
 

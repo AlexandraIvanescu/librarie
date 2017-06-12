@@ -143,4 +143,10 @@ public class LibraryController {
         return borrowService.addBorrow(borrow);
     }
 
+    @RequestMapping(value = "/library/add/borrow", params = {"subscriberId"})
+    @ResponseBody
+    public List<BookBorrow> getBorrow(@RequestParam(value = "subscriberId") int subscriberId) {
+        return borrowService.getAllSubscriberBorrow(subscriberId);
+    }
+
 }
