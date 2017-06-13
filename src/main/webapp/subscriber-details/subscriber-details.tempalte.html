@@ -120,7 +120,7 @@
                                 <td>{{borrow.startDate}}</td>
                                 <td>{{borrow.endDate}}</td>
                                 <td ng-if="borrow.borrow.borrowed && currentDate <= borrow.borrow.endDate">
-                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary" ng-click="extended(borrow.borrow)">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
                                     </md-button>
@@ -130,17 +130,12 @@
                                     </md-button>
                                 </td>
                                 <td ng-if="borrow.borrow.borrowed && currentDate > borrow.borrow.endDate">
-                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary" ng-click="extended(borrow.borrow)">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
                                     </md-button>
                                 </td>
-                                <td ng-if="!borrow.borrow.borrowed">
-                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
-                                        <md-icon md-svg-src="images/refresh.svg"></md-icon>
-                                        <span>Prelungeste</span>
-                                    </md-button>
-                                </td>
+                                <td ng-if="!borrow.borrow.borrowed"></td>
                             </tr>
                             </tbody>
                         </table>

@@ -69,4 +69,17 @@ public class BorrowService {
         return bookBorrows;
     }
 
+    public boolean extendedBorrow(Borrow borrow) {
+        Calendar now = Calendar.getInstance();
+
+        now.setTime(borrow.getEndDate());
+        now.add(Calendar.MONTH, 1);
+
+        Date endDate = now.getTime();
+
+        borrowRepository.updateEndDate(endDate, borrow.getId());
+
+        return true;
+    }
+
 }

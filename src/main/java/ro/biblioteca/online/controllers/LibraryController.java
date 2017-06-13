@@ -149,4 +149,10 @@ public class LibraryController {
         return borrowService.getAllSubscriberBorrow(subscriberId);
     }
 
+    @RequestMapping(value = "/library/extended/borrow", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean extendedBorrow(@RequestBody Borrow borrow) {
+        return borrowService.extendedBorrow(borrow);
+    }
+
 }
