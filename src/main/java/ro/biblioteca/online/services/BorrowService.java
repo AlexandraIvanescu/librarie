@@ -82,4 +82,12 @@ public class BorrowService {
         return true;
     }
 
+    public boolean deleteBorrow(Borrow borrow) {
+
+        borrowRepository.delete(borrow);
+
+        return true;
+    }
+
+
 }

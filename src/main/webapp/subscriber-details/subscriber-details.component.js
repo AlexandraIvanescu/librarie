@@ -163,5 +163,31 @@ angular.module('libraryApp').component('subscriberDetails', {
 
             };
 
+            $scope.deleteBorrow = function (borrow) {
+
+                var position = $mdPanel.newPanelPosition()
+                    .absolute()
+                    .center();
+
+                var config = {
+                    attachTo: angular.element(document.body),
+                    template: '<delete-borrow></delete-borrow>',
+                    hasBackdrop: true,
+                    panelClass: 'new-post',
+                    position: position,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    disableParentScroll: true,
+                    trapFocus: true
+                };
+
+                $rootScope.borrow = borrow;
+
+                $mdPanel.open(config).then(function (result) {
+                    $rootScope.panelRef = result;
+                });
+
+            };
+
         }]
 });

@@ -155,4 +155,10 @@ public class LibraryController {
         return borrowService.extendedBorrow(borrow);
     }
 
+    @RequestMapping(value = "/library/delete/borrow", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean deleteBorrow(@RequestBody Borrow borrow) {
+        return borrowService.deleteBorrow(borrow);
+    }
+
 }
