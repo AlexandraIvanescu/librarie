@@ -2,12 +2,16 @@ package ro.biblioteca.online.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.BookBorrow;
 import ro.biblioteca.online.models.Borrow;
 import ro.biblioteca.online.repositories.BookRepository;
 import ro.biblioteca.online.repositories.BorrowRepository;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -87,6 +91,52 @@ public class BorrowService {
         borrowRepository.delete(borrow);
 
         return true;
+    }
+
+    public List<BookBorrow> searchBorrow(String title, String author, String sStartDate, String sEndDate) {
+
+        try {
+
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date startDate;
+            Date endDate;
+
+            if (sStartDate.equals("")) {
+                startDate = format.parse("10-10-1930");
+            } else {
+                startDate = format.parse(sStartDate);
+            }
+
+            if (sEndDate.equals("")) {
+                endDate = format.parse("10-10-2030");
+            } else {
+                endDate = format.parse(sEndDate);
+            }
+
+            List<Borrow> borrows = borrowRepository.findBorrowsByLibraryEmailAndTitleAndAuthor(SecurityUtils.getCurrentLogin(), title, author, startDate, endDate);
+            List<BookBorrow> bookBorrows = new ArrayList<>();
+
+            borrows.forEach(borrow -> {
+                Book book = bookRepository.findBookById(borrow.getBookId());
+                BookBorrow bookBorrow = new BookBorrow();
+
+                borrow.setSubscriber(null);
+                book.setLibrary(null);
+                book.setCategory(null);
+
+                bookBorrow.setBook(book);
+                bookBorrow.setBorrow(borrow);
+
+                bookBorrows.add(bookBorrow);
+            });
+
+            return bookBorrows;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 

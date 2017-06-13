@@ -7,6 +7,7 @@ import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.*;
 import ro.biblioteca.online.services.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,6 +160,15 @@ public class LibraryController {
     @ResponseBody
     public boolean deleteBorrow(@RequestBody Borrow borrow) {
         return borrowService.deleteBorrow(borrow);
+    }
+
+
+    @RequestMapping(path = "/library/search/borrow", params = {"title", "author", "startDate", "endDate"})
+    @ResponseBody
+    public List<BookBorrow> getBorrowSearch(@RequestParam(value = "title") String title, @RequestParam(value = "author") String author,
+                                            @RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate) {
+
+        return borrowService.searchBorrow(title, author, startDate, endDate);
     }
 
 }

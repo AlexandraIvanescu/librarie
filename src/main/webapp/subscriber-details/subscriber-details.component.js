@@ -189,5 +189,46 @@ angular.module('libraryApp').component('subscriberDetails', {
 
             };
 
+
+            $scope.title = "";
+            $scope.author = "";
+            $scope.startDate = "";
+            $scope.endDate = "";
+
+            $scope.searchBorrow = function () {
+
+                var startDate = "";
+                var endDate = "";
+
+                if ($scope.startDate != "") {
+                    startDate = DateToStringService.dateToString(new Date($scope.startDate));
+                }
+
+                if ($scope.endDate != "") {
+                    endDate = DateToStringService.dateToString(new Date($scope.endDate));
+                }
+
+                var url = '/library/search/borrow?title=' + $scope.title + '&author=' + $scope.author + '&startDate=' + startDate + '&endDate=' + endDate;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.borrows = response.data;
+
+                    $scope.borrows.forEach(function (borrow) {
+                        borrow.startDate = DateToStringService.dateToString(new Date(borrow.borrow.startDate));
+                        borrow.endDate = DateToStringService.dateToString(new Date(borrow.borrow.endDate));
+                    });
+                });
+
+            };
+
         }]
 });
