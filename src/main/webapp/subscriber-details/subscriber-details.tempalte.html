@@ -52,21 +52,22 @@
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/agenda.svg"></md-icon>
                                 <label for="title">Titlu</label>
-                                <input id="title" name="title" ng-model="$ctrl.title" minlength="3" maxlength="30">
+                                <input id="title" name="title" ng-model="title" minlength="3" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
                                 <label for="author">Autor</label>
-                                <input id="author" name="author" ng-model="$ctrl.author" minlength="3" maxlength="30">
+                                <input id="author" name="author" ng-model="author" minlength="3" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de inceput</label>
-                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                <md-datepicker required name="releaseDate" ng-model="startDate"
                                                md-max-date="maxDate"></md-datepicker>
                                 <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
                                     <div ng-message-exp="['required', 'maxdate']">
@@ -77,9 +78,10 @@
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de sfarsit</label>
-                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                <md-datepicker required name="releaseDate" ng-model="endDate"
                                                md-max-date="maxDate"></md-datepicker>
                                 <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
                                     <div ng-message-exp="['required', 'maxdate']">
@@ -89,7 +91,7 @@
                             </md-input-container>
                         </div>
                         <div>
-                            <md-button class="md-fab button-search" aria-label="Eat cake">
+                            <md-button class="md-fab button-search" aria-label="Eat cake" ng-click="searchBorrow()">
                                 <md-icon md-svg-src="images/search.svg"></md-icon>
                             </md-button>
                         </div>
@@ -99,7 +101,7 @@
                             </md-button>
                         </div>
                     </div>
-                    <div>
+                    <div ng-if="borrows.length != 0">
                         <table class="table table-condensed table-bordered librery-table">
                             <thead>
                             <tr>
@@ -111,57 +113,38 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="warning">
-                                <td>Shogun</td>
-                                <td>James Clavell</td>
-                                <td>20-05-2017</td>
-                                <td>20-06-2017</td>
-                                <td>
-                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                            <tr ng-repeat="borrow in borrows"
+                                ng-class="borrow.borrow.borrowed ? (currentDate <= borrow.borrow.endDate ? 'warning' : 'danger'):'success'">
+                                <td>{{borrow.book.title}}</td>
+                                <td>{{borrow.book.author}}</td>
+                                <td>{{borrow.startDate}}</td>
+                                <td>{{borrow.endDate}}</td>
+                                <td ng-if="borrow.borrow.borrowed && currentDate <= borrow.borrow.endDate">
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary"
+                                               ng-click="extended(borrow.borrow)">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
                                     </md-button>
-                                    <md-button aria-label="Eat cake" class="md-warn">
+                                    <md-button aria-label="Eat cake" class="md-warn"
+                                               ng-click="deleteBorrow(borrow.borrow)">
                                         <md-icon md-svg-src="images/delete.svg"></md-icon>
                                         <span>Sterge</span>
                                     </md-button>
                                 </td>
-                            </tr>
-                            <tr class="danger">
-                                <td>Zece negrii mititei</td>
-                                <td>Agatha Christie</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td>
-                                    <md-button type="submit" aria-label="Eat cake" class="md-primary">
+                                <td ng-if="borrow.borrow.borrowed && currentDate > borrow.borrow.endDate">
+                                    <md-button type="submit" aria-label="Eat cake" class="md-primary"
+                                               ng-click="extended(borrow.borrow)">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>
                                         <span>Prelungeste</span>
                                     </md-button>
                                 </td>
-                            </tr>
-                            <tr class="success">
-                                <td>Cartea junglei</td>
-                                <td>Rudyard Kipling</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td></td>
-                            </tr>
-                            <tr class="success">
-                                <td>Sherlock Holmes</td>
-                                <td>Arthur Conan Doyle</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                                <td></td>
-                            </tr>
-                            <tr class="success">
-                                <td>Adultery</td>
-                                <td>Paulo Coehlo</td>
-                                <td>10-04-2017</td>
-                                <td>10-05-2017</td>
-                                <td></td>
+                                <td ng-if="!borrow.borrow.borrowed"></td>
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div ng-if="borrows.length == 0">
+                        <h1>Nici un rezultat !</h1>
                     </div>
                 </md-card-title-text>
             </md-card-title>

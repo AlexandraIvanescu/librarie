@@ -20,6 +20,8 @@ public class Borrow {
 
     private int bookId;
 
+    private boolean isBorrowed;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscriber_id", nullable = false)
     private Subscriber subscriber;
@@ -54,6 +56,14 @@ public class Borrow {
 
     public void setBookId(int bookId) {
         this.bookId = bookId;
+    }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
     }
 
     public Subscriber getSubscriber() {
