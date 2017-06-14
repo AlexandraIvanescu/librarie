@@ -139,5 +139,12 @@ public class BorrowService {
         return null;
     }
 
+    public boolean hasBorrow(int subscriberId) {
+
+        List<Borrow> borrows = borrowRepository.getAllBorrowBooksBySubscriber(subscriberId);
+
+        return borrows.isEmpty();
+    }
+
 
 }

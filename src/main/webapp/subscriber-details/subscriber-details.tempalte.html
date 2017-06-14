@@ -101,7 +101,7 @@
                             </md-button>
                         </div>
                     </div>
-                    <div>
+                    <div ng-if="borrows.length != 0">
                         <table class="table table-condensed table-bordered librery-table">
                             <thead>
                             <tr>
@@ -142,6 +142,9 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div ng-if="borrows.length == 0">
+                        <h1>Nici un rezultat !</h1>
                     </div>
                 </md-card-title-text>
             </md-card-title>

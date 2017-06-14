@@ -113,26 +113,60 @@ angular.module('libraryApp').component('subscriberDetails', {
             };
 
             $scope.addBorrow = function () {
-                var position = $mdPanel.newPanelPosition()
-                    .absolute()
-                    .center();
 
-                var config = {
-                    attachTo: angular.element(document.body),
-                    template: '<add-borrow></add-borrow>',
-                    hasBackdrop: true,
-                    panelClass: 'new-post',
-                    position: position,
-                    clickOutsideToClose: true,
-                    escapeToClose: true,
-                    disableParentScroll: true,
-                    trapFocus: true
+                var url = '/library/has/borrow?subscriberId=' + subscriberId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
                 };
 
-                $rootScope.subscriber = $scope.subscriber;
+                $http(req).then(function (response) {
+                    var config;
+                    var position = $mdPanel.newPanelPosition()
+                        .absolute()
+                        .center();
 
-                $mdPanel.open(config).then(function (result) {
-                    $rootScope.panelRef = result;
+                    if (response.data) {
+
+                        config = {
+                            attachTo: angular.element(document.body),
+                            template: '<add-borrow></add-borrow>',
+                            hasBackdrop: true,
+                            panelClass: 'new-post',
+                            position: position,
+                            clickOutsideToClose: true,
+                            escapeToClose: true,
+                            disableParentScroll: true,
+                            trapFocus: true
+                        };
+
+                        $rootScope.subscriber = $scope.subscriber;
+
+                    } else {
+
+                        config = {
+                            attachTo: angular.element(document.body),
+                            template: '<add-borrow-error></add-borrow-error>',
+                            hasBackdrop: true,
+                            panelClass: 'new-post',
+                            position: position,
+                            clickOutsideToClose: true,
+                            escapeToClose: true,
+                            disableParentScroll: true,
+                            trapFocus: true
+                        };
+
+                    }
+
+                    $mdPanel.open(config).then(function (result) {
+                        $rootScope.panelRef = result;
+                    });
+
                 });
 
             };

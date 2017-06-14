@@ -35,4 +35,10 @@ public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
     List<Borrow> findBorrowsByLibraryEmailAndTitleAndAuthor(String email, String title, String author, Date startDate, Date endDate);
 
 
+    @Query("SELECT b from Borrow b " +
+            "WHERE b.subscriber.id = ?1 " +
+            "AND b.isBorrowed = true " +
+            "AND b.endDate <= CURDATE()")
+    List<Borrow> getAllBorrowBooksBySubscriber(int subscriberId);
+
 }
