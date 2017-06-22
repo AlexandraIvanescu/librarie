@@ -144,7 +144,7 @@ public class LibraryController {
         return borrowService.addBorrow(borrow);
     }
 
-    @RequestMapping(value = "/library/add/borrow", params = {"subscriberId"})
+    @RequestMapping(value = "/library/get/borrow", params = {"subscriberId"})
     @ResponseBody
     public List<BookBorrow> getBorrow(@RequestParam(value = "subscriberId") int subscriberId) {
         return borrowService.getAllSubscriberBorrow(subscriberId);
@@ -175,6 +175,12 @@ public class LibraryController {
     @ResponseBody
     public boolean hasBorrow(@RequestParam(value = "subscriberId") int subscriberId) {
         return borrowService.hasBorrow(subscriberId);
+    }
+
+    @RequestMapping(value = "/library/get/book/borrow", params = {"bookId"})
+    @ResponseBody
+    public List<Borrow> getBookBorrow(@RequestParam(value = "bookId") int bookId) {
+        return borrowService.getBookBorrow(bookId);
     }
 
 }

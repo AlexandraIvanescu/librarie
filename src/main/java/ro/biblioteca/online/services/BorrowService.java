@@ -6,6 +6,7 @@ import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.models.Book;
 import ro.biblioteca.online.models.BookBorrow;
 import ro.biblioteca.online.models.Borrow;
+import ro.biblioteca.online.models.Subscriber;
 import ro.biblioteca.online.repositories.BookRepository;
 import ro.biblioteca.online.repositories.BorrowRepository;
 
@@ -146,5 +147,20 @@ public class BorrowService {
         return borrows.isEmpty();
     }
 
+
+    public List<Borrow> getBookBorrow(int bookId) {
+        List<Borrow> borrows = borrowRepository.findBorrowByBookId(bookId);
+
+        borrows.forEach(borrow -> {
+            Subscriber subscriber = borrow.getSubscriber();
+
+            subscriber.setLibrary(null);
+            subscriber.setBorrows(null);
+
+            borrow.setSubscriber(subscriber);
+        });
+
+        return borrows;
+    }
 
 }

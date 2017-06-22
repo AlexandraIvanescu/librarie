@@ -68,7 +68,8 @@
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de inceput</label>
                                 <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
                                                md-max-date="maxDate"></md-datepicker>
@@ -81,7 +82,8 @@
                         </div>
                         <div>
                             <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon style="position:absolute; left:15px" md-svg-src="images/calendar.svg"></md-icon>
+                                <md-icon style="position:absolute; left:15px"
+                                         md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de sfarsit</label>
                                 <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
                                                md-max-date="maxDate"></md-datepicker>
@@ -109,35 +111,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="warning">
-                                <td>Tibor</td>
-                                <td>Maria</td>
-                                <td>10-06-2017</td>
-                                <td>10-07-2017</td>
-                            </tr>
-                            <tr class="success">
-                                <td>Emilia</td>
-                                <td>Laura</td>
-                                <td>10-05-2017</td>
-                                <td>10-06-2017</td>
-                            </tr>
-                            <tr class="success">
-                                <td>Emilia</td>
-                                <td>Laura</td>
-                                <td>10-04-2017</td>
-                                <td>10-05-2017</td>
-                            </tr>
-                            <tr class="success">
-                                <td>Panait</td>
-                                <td>Bogdan</td>
-                                <td>10-03-2017</td>
-                                <td>10-04-2017</td>
-                            </tr>
-                            <tr class="success">
-                                <td>Parvu</td>
-                                <td>Loredana</td>
-                                <td>10-02-2017</td>
-                                <td>10-03-2017</td>
+                            <tr ng-repeat="borrow in borrows"
+                                ng-class="borrow.borrowed ? (currentDate <= borrow.endDate ? 'warning' : 'danger'):'success'">
+                                <td>{{borrow.subscriber.lastName}}</td>
+                                <td>{{borrow.subscriber.firstName}}</td>
+                                <td>{{borrow.startDateToString}}</td>
+                                <td>{{borrow.endDateToString}}</td>
                             </tr>
                             </tbody>
                         </table>

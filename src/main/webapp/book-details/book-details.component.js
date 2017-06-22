@@ -12,6 +12,7 @@ angular.module('libraryApp').component('bookDetails', {
 
             var path = $location.path().split("/");
             var bookId = path[path.length - 1];
+            $scope.currentDate = new Date();
 
 
             var getBook = function () {
@@ -38,7 +39,33 @@ angular.module('libraryApp').component('bookDetails', {
 
             };
 
+            var getBorrow = function () {
+
+                var url = '/library/get/book/borrow?bookId=' + bookId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.borrows = response.data;
+
+                    $scope.borrows.forEach(function (borrow) {
+                        borrow.startDateToString = DateToStringService.dateToString(new Date(borrow.startDate));
+                        borrow.endDateToString = DateToStringService.dateToString(new Date(borrow.endDate));
+                    });
+
+                });
+
+            };
+
             getBook();
+            getBorrow();
 
             $scope.updateBook = function () {
 
