@@ -183,4 +183,13 @@ public class LibraryController {
         return borrowService.getBookBorrow(bookId);
     }
 
+    @RequestMapping(path = "/library/search/book/borrow", params = {"firstName", "lastName", "startDate", "endDate", "bookId"})
+    @ResponseBody
+    public List<Borrow> getBookBorrowSearch(@RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName,
+                                            @RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate,
+                                            @RequestParam(value = "bookId") int bookId) {
+
+        return borrowService.searchBookBorrow(firstName, lastName, startDate, endDate, bookId);
+    }
+
 }

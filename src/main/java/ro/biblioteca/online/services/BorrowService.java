@@ -163,4 +163,45 @@ public class BorrowService {
         return borrows;
     }
 
+
+    public List<Borrow> searchBookBorrow(String firstName, String lastName, String sStartDate, String sEndDate, int bookId) {
+
+        try {
+
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date startDate;
+            Date endDate;
+
+            if (sStartDate.equals("")) {
+                startDate = format.parse("10-10-1930");
+            } else {
+                startDate = format.parse(sStartDate);
+            }
+
+            if (sEndDate.equals("")) {
+                endDate = format.parse("10-10-2030");
+            } else {
+                endDate = format.parse(sEndDate);
+            }
+
+            List<Borrow> borrows = borrowRepository.findBorrowsByStartDateAndEndDateAndFirstNameAndLastName(firstName, lastName, startDate, endDate, bookId);
+
+            borrows.forEach(borrow -> {
+                Subscriber subscriber = borrow.getSubscriber();
+
+                subscriber.setLibrary(null);
+                subscriber.setBorrows(null);
+
+                borrow.setSubscriber(subscriber);
+            });
+
+            return borrows;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }

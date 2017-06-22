@@ -56,14 +56,14 @@
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/users_2.svg"></md-icon>
                                 <label for="title">Nume</label>
-                                <input id="title" name="title" ng-model="$ctrl.title" minlength="3" maxlength="30">
+                                <input id="title" name="title" ng-model="lastName" minlength="3" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/user.svg"></md-icon>
                                 <label for="author">Prenume</label>
-                                <input id="author" name="author" ng-model="$ctrl.author" minlength="3" maxlength="30">
+                                <input id="author" name="author" ng-model="firstName" minlength="3" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
@@ -71,7 +71,7 @@
                                 <md-icon style="position:absolute; left:15px"
                                          md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de inceput</label>
-                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                <md-datepicker required name="releaseDate" ng-model="startDate"
                                                md-max-date="maxDate"></md-datepicker>
                                 <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
                                     <div ng-message-exp="['required', 'maxdate']">
@@ -85,7 +85,7 @@
                                 <md-icon style="position:absolute; left:15px"
                                          md-svg-src="images/calendar.svg"></md-icon>
                                 <label>Data de sfarsit</label>
-                                <md-datepicker required name="releaseDate" ng-model="book.releaseDate"
+                                <md-datepicker required name="releaseDate" ng-model="endDate"
                                                md-max-date="maxDate"></md-datepicker>
                                 <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
                                     <div ng-message-exp="['required', 'maxdate']">
@@ -95,12 +95,12 @@
                             </md-input-container>
                         </div>
                         <div>
-                            <md-button class="md-fab button-search" aria-label="Eat cake">
+                            <md-button class="md-fab button-search" aria-label="Eat cake" ng-click="searchBorrow()">
                                 <md-icon md-svg-src="images/search.svg"></md-icon>
                             </md-button>
                         </div>
                     </div>
-                    <div>
+                    <div ng-if="borrows.length != 0">
                         <table class="table table-condensed table-bordered librery-table">
                             <thead>
                             <tr>
@@ -120,6 +120,9 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div ng-if="borrows.length == 0">
+                        <h1>Nici un rezultat !</h1>
                     </div>
                 </md-card-title-text>
             </md-card-title>
