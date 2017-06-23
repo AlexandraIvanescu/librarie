@@ -12,6 +12,7 @@ angular.module('libraryApp').component('bookDetails', {
 
             var path = $location.path().split("/");
             var bookId = path[path.length - 1];
+            $scope.currentDate = new Date();
 
 
             var getBook = function () {
@@ -38,7 +39,33 @@ angular.module('libraryApp').component('bookDetails', {
 
             };
 
+            var getBorrow = function () {
+
+                var url = '/library/get/book/borrow?bookId=' + bookId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.borrows = response.data;
+
+                    $scope.borrows.forEach(function (borrow) {
+                        borrow.startDateToString = DateToStringService.dateToString(new Date(borrow.startDate));
+                        borrow.endDateToString = DateToStringService.dateToString(new Date(borrow.endDate));
+                    });
+
+                });
+
+            };
+
             getBook();
+            getBorrow();
 
             $scope.updateBook = function () {
 
@@ -91,6 +118,48 @@ angular.module('libraryApp').component('bookDetails', {
 
                 $mdPanel.open(config).then(function (result) {
                     $rootScope.panelRef = result;
+                });
+
+            };
+
+            $scope.firstName = "";
+            $scope.lastName = "";
+            $scope.startDate = "";
+            $scope.endDate = "";
+
+            $scope.searchBorrow = function () {
+
+                var startDate = "";
+                var endDate = "";
+
+                if ($scope.startDate != "") {
+                    startDate = DateToStringService.dateToString(new Date($scope.startDate));
+                }
+
+                if ($scope.endDate != "") {
+                    endDate = DateToStringService.dateToString(new Date($scope.endDate));
+                }
+
+                var url = '/library/search/book/borrow?firstName=' + $scope.firstName + '&lastName=' + $scope.lastName +
+                    '&startDate=' + startDate + '&endDate=' + endDate + '&bookId=' + bookId;
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.borrows = response.data;
+
+                    $scope.borrows.forEach(function (borrow) {
+                        borrow.startDateToString = DateToStringService.dateToString(new Date(borrow.startDate));
+                        borrow.endDateToString = DateToStringService.dateToString(new Date(borrow.endDate));
+                    });
+
                 });
 
             };

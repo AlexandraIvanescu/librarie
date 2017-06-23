@@ -31,7 +31,7 @@ angular.module('libraryApp').component('subscriberDetails', {
 
             var getBorrow = function () {
 
-                var url = '/library/add/borrow?subscriberId=' + subscriberId;
+                var url = '/library/get/borrow?subscriberId=' + subscriberId;
 
                 var req = {
                     method: 'GET',
