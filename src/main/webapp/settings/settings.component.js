@@ -4,13 +4,8 @@
 
 angular.module('libraryApp').component('settings', {
     templateUrl: 'settings/settings.template.html',
-    controller: ['$scope', '$location', '$http', '$mdPanel', '$rootScope',
-        function SubscribersController($scope, $location, $http, $mdPanel, $rootScope) {
-
-            $scope.change = {};
-            $scope.change.email = "biblioteca@romania.ro";
-            $scope.change.name = "Biblioteca Nationala";
-
+    controller: ['$scope', '$location', '$http', '$mdPanel', '$rootScope', '$route',
+        function SubscribersController($scope, $location, $http, $mdPanel, $rootScope, $route) {
 
             function getCategory() {
 
@@ -29,7 +24,25 @@ angular.module('libraryApp').component('settings', {
 
             }
 
+            function getAccount() {
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: '/library/get/account',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.account = response.data;
+                });
+
+            }
+
             getCategory();
+            getAccount();
 
             $scope.addCategory = function () {
 
@@ -54,6 +67,22 @@ angular.module('libraryApp').component('settings', {
                 });
 
             };
+
+            $scope.updateAccount = function () {
+                var req = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/library/update/account',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: $scope.account
+                };
+
+                $http(req).then(function (response) {
+                    $route.reload();
+                });
+            }
 
         }
     ]

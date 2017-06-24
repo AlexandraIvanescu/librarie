@@ -45,4 +45,10 @@ public class LibraryService {
         return library;
     }
 
+    public boolean updateLibrary(Library library) {
+        libraryRepository.updateLibrary(library.getName(), library.getEmail(), library.getId());
+
+        return true;
+    }
+
 }

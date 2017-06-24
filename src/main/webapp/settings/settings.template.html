@@ -42,7 +42,7 @@
                             <md-input-container>
                                 <md-icon md-svg-icon="images/email.svg"></md-icon>
                                 <label for="userEmail">Email</label>
-                                <input id="userEmail" ng-model="change.email" type="email" required>
+                                <input id="userEmail" ng-model="account.email" type="email" required>
                                 <span ng-show="userAuthenticationError" class="help-block login-alert">
                                         Va rugam sa verificati cu atentie adresa de email.
                                 </span>
@@ -52,7 +52,7 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <md-icon md-svg-icon="images/library.svg"></md-icon>
                                 <label for="name">Numele Bibliotecii</label>
-                                <input id="name" required name="name" ng-model="change.name"
+                                <input id="name" required name="name" ng-model="account.name"
                                        minlength="3" maxlength="30" ng-pattern="/^[ a-zA-Z]+$/">
                                 <div ng-messages="userForm.name.$error" role="alert">
                                     <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
@@ -64,7 +64,7 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="center">
-                    <md-button md-no-ink class="md-primary">
+                    <md-button md-no-ink class="md-primary" ng-click="updateAccount()">
                         <md-icon md-svg-icon="images/refresh.svg"></md-icon>
                         Schimba
                     </md-button>

@@ -199,4 +199,10 @@ public class LibraryController {
         return categoryService.saveCategory(category);
     }
 
+    @RequestMapping(value = "/library/update/account", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updateAccount(@RequestBody Library library) {
+        return libraryService.updateLibrary(library);
+    }
+
 }
