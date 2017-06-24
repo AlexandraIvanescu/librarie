@@ -217,4 +217,16 @@ public class LibraryController {
         return libraryService.deleteAccount(password);
     }
 
+    @RequestMapping(value = "/library/book/statistics", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Integer> getBookStatistics() {
+        return bookService.getBookStatistics();
+    }
+
+    @RequestMapping(value = "/library/subscriber/statistics", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Integer> getSubscriberStatistics() {
+        return subscriberService.getSubscriberStatistics();
+    }
+
 }

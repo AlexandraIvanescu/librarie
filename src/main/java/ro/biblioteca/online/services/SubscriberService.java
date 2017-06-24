@@ -11,6 +11,7 @@ import ro.biblioteca.online.repositories.SubscriberRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,5 +94,16 @@ public class SubscriberService {
 
         return true;
     }
+
+   public List<Integer> getSubscriberStatistics() {
+       String currentUser = SecurityUtils.getCurrentLogin();
+       List<Integer> result = new ArrayList<>();
+
+       result.add(subscriberRepository.countSubscriberByLibraryEmail(currentUser));
+       result.add(subscriberRepository.countSubscriberBorrowed(currentUser));
+       result.add(subscriberRepository.countSubscriberLate(currentUser));
+
+       return result;
+   }
 
 }

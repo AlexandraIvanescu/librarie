@@ -25,4 +25,19 @@ public interface SubscriberRepository extends JpaRepository<Subscriber, Integer>
 
     Subscriber findSubscriberByIdAndLibraryEmail(int id, String email);
 
+    @Query("SELECT COUNT(s) from Subscriber s WHERE s.library.email = ?1")
+    int countSubscriberByLibraryEmail(String email);
+
+    @Query("SELECT COUNT(s) from Subscriber s " +
+            "WHERE s.library.email = ?1 " +
+            "AND s.id IN (SELECT br.subscriber.id FROM Borrow br WHERE br.isBorrowed = true)")
+    int countSubscriberBorrowed(String email);
+
+    @Query("SELECT COUNT(s) from Subscriber s " +
+            "WHERE s.library.email = ?1 " +
+            "AND s.id IN  (SELECT br.subscriber.id FROM Borrow br " +
+            "               WHERE br.isBorrowed = true " +
+            "               AND br.endDate <= CURDATE())")
+    int countSubscriberLate(String email);
+
 }
