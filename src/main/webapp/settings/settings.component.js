@@ -11,6 +11,26 @@ angular.module('libraryApp').component('settings', {
             $scope.change.email = "biblioteca@romania.ro";
             $scope.change.name = "Biblioteca Nationala";
 
+
+            function getCategory() {
+
+                var req = {
+                    method: 'GET',
+                    dataType: 'json',
+                    url: '/library/get/category',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                };
+
+                $http(req).then(function (response) {
+                    $scope.categories = response.data;
+                });
+
+            }
+
+            getCategory();
+
             $scope.addCategory = function () {
 
                 var position = $mdPanel.newPanelPosition()
