@@ -192,4 +192,11 @@ public class LibraryController {
         return borrowService.searchBookBorrow(firstName, lastName, startDate, endDate, bookId);
     }
 
+
+    @RequestMapping(value = "/library/add/category", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addCategory(@RequestBody Category category) {
+        return categoryService.saveCategory(category);
+    }
+
 }
