@@ -205,4 +205,10 @@ public class LibraryController {
         return libraryService.updateLibrary(library);
     }
 
+    @RequestMapping(value = "/library/update/password", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updatePassword(@RequestBody ChangePassword changePassword) {
+        return libraryService.updatePassword(changePassword.getNewPassword(), changePassword.getOldPassword());
+    }
+
 }

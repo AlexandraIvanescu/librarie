@@ -33,104 +33,109 @@
         </div>
         <div class="col-md-6">
             <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <div style="text-align: center;">
-                            <span class="md-headline">Schimba Informatii</span>
-                        </div>
-                        <div class="login-input">
-                            <md-input-container>
-                                <md-icon md-svg-icon="images/email.svg"></md-icon>
-                                <label for="userEmail">Email</label>
-                                <input id="userEmail" ng-model="account.email" type="email" required>
-                                <span ng-show="userAuthenticationError" class="help-block login-alert">
-                                        Va rugam sa verificati cu atentie adresa de email.
-                                </span>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon md-svg-icon="images/library.svg"></md-icon>
-                                <label for="name">Numele Bibliotecii</label>
-                                <input id="name" required name="name" ng-model="account.name"
-                                       minlength="3" maxlength="30" ng-pattern="/^[ a-zA-Z]+$/">
-                                <div ng-messages="userForm.name.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
-                                        Trebuie sa contina doar litere.
+                <form role="form" name="updateAccountForm" ng-submit="updateAccount()">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <div style="text-align: center;">
+                                <span class="md-headline">Schimba Informatii</span>
+                            </div>
+                            <div class="login-input">
+                                <md-input-container>
+                                    <md-icon md-svg-icon="images/email.svg"></md-icon>
+                                    <label for="userEmail">Email</label>
+                                    <input id="userEmail" ng-model="account.email" type="email" required
+                                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                    <div ng-messages="updateAccountForm.userEmail.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            Verificati cu atentie adresa de email pe care ati introdus-o.
+                                        </div>
                                     </div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="center">
-                    <md-button md-no-ink class="md-primary" ng-click="updateAccount()">
-                        <md-icon md-svg-icon="images/refresh.svg"></md-icon>
-                        Schimba
-                    </md-button>
-                </md-card-actions>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/library.svg"></md-icon>
+                                    <label for="name">Numele Bibliotecii</label>
+                                    <input id="name" required name="name" ng-model="account.name"
+                                           minlength="3" maxlength="30" ng-pattern="/^[ a-zA-Z]+$/">
+                                    <div ng-messages="updateAccountForm.name.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength','pattern']">
+                                            Trebuie sa contina doar litere.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button md-no-ink class="md-primary" type="submit">
+                            <md-icon md-svg-icon="images/refresh.svg"></md-icon>
+                            Schimba
+                        </md-button>
+                    </md-card-actions>
+                </form>
             </md-card>
         </div>
         <div class="col-md-6">
             <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <div style="text-align: center;">
-                            <span class="md-headline">Schimba Parola</span>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon md-svg-icon="images/key.svg"></md-icon>
-                                <label for="old_password">Vechea Parola</label>
-                                <input id="old_password" name="password" ng-model="library.password" type="password"
-                                       required
-                                       minlength="10" maxlength="30">
-                                <div ng-messages="userForm.password.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                        Parola trebuie sa fie intre 10 si 30 de caractere.
+                <form role="form" name="changePasswordForm" ng-submit="changePassword()">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <div style="text-align: center;">
+                                <span class="md-headline">Schimba Parola</span>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="oldPassword">Vechea Parola</label>
+                                    <input id="oldPassword" name="oldPassword" ng-model="oldPassword" type="password"
+                                           required minlength="10" maxlength="30">
+                                    <div ng-messages="changePasswordForm.oldPassword.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                            Parola trebuie sa fie intre 10 si 30 de caractere.
+                                        </div>
                                     </div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon md-svg-icon="images/key.svg"></md-icon>
-                                <label for="password">Noua Parola</label>
-                                <input id="password" name="password" ng-model="library.password" type="password"
-                                       required
-                                       minlength="10" maxlength="30">
-                                <div ng-messages="userForm.password.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                        Parola trebuie sa fie intre 10 si 30 de caractere.
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="newPassword">Noua Parola</label>
+                                    <input id="newPassword" name="newPassword" ng-model="newPassword" type="password"
+                                           required minlength="10" maxlength="30">
+                                    <div ng-messages="changePasswordForm.newPassword.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                            Parola trebuie sa fie intre 10 si 30 de caractere.
+                                        </div>
                                     </div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <md-icon md-svg-icon="images/key.svg"></md-icon>
-                                <label for="repeatPassword">Repetati noua parola</label>
-                                <input id="repeatPassword" name="repeatPassword" ng-model="library.repeatPassword"
-                                       type="password" required minlength="10" maxlength="30"
-                                       ng-match="library.password">
-                                <div ng-messages="userForm.repeatPassword.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                        Parola trebuie sa fie intre 10 si 30 de caractere.
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon md-svg-icon="images/key.svg"></md-icon>
+                                    <label for="repeatPassword">Repetati noua parola</label>
+                                    <input id="repeatPassword" name="repeatPassword" ng-model="repeatPassword"
+                                           type="password" required minlength="10" maxlength="30"
+                                           ng-match="newPassword">
+                                    <div ng-messages="changePasswordForm.repeatPassword.$error" role="alert">
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                            Parola trebuie sa fie intre 10 si 30 de caractere.
+                                        </div>
+                                        <div ng-message="match">
+                                            Cele doua parole nu sunt identice.
+                                        </div>
                                     </div>
-                                    <div ng-message="match">
-                                        Cele doua parole nu sunt identice.
-                                    </div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="center">
-                    <md-button md-no-ink class="md-primary">
-                        <md-icon md-svg-icon="images/refresh.svg"></md-icon>
-                        Schimba
-                    </md-button>
-                </md-card-actions>
+                                </md-input-container>
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="center">
+                        <md-button md-no-ink class="md-primary" type="submit">
+                            <md-icon md-svg-icon="images/refresh.svg"></md-icon>
+                            Schimba
+                        </md-button>
+                    </md-card-actions>
+                </form>
             </md-card>
         </div>
         <div class="col-md-6">
@@ -143,8 +148,8 @@
                         <div layout-gt-sm="row">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <md-icon md-svg-icon="images/key.svg"></md-icon>
-                                <label for="old_password">Parola</label>
-                                <input id="delete_password" name="password" ng-model="library.password" type="password"
+                                <label for="deletePassword">Parola</label>
+                                <input id="deletePassword" name="password" ng-model="library.password" type="password"
                                        required
                                        minlength="10" maxlength="30">
                                 <div ng-messages="userForm.password.$error" role="alert">

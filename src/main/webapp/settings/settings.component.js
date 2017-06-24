@@ -82,7 +82,22 @@ angular.module('libraryApp').component('settings', {
                 $http(req).then(function (response) {
                     $route.reload();
                 });
-            }
+            };
+
+            $scope.changePassword = function () {
+                var req = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/library/update/password',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: {"oldPassword": $scope.oldPassword, "newPassword": $scope.newPassword}
+                };
+
+                $http(req);
+
+            };
 
         }
     ]
