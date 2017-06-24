@@ -4,6 +4,7 @@ package ro.biblioteca.online.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ro.biblioteca.online.config.SecurityUtils;
 import ro.biblioteca.online.repositories.LibraryRepository;
 import ro.biblioteca.online.models.Library;
 
@@ -44,5 +45,42 @@ public class LibraryService {
 
         return library;
     }
+
+    public boolean updateLibrary(Library library) {
+        libraryRepository.updateLibrary(library.getName(), library.getEmail(), library.getId());
+
+        return true;
+    }
+
+    public boolean updatePassword(String newPassword, String oldPassword) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        if (passwordEncoder.matches(oldPassword, library.getPassword())) {
+            String encodPassword = passwordEncoder.encode(newPassword);
+            library.setPassword(encodPassword);
+
+            libraryRepository.saveAndFlush(library);
+
+        } else {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public boolean deleteAccount(String password) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        if (passwordEncoder.matches(password, library.getPassword())) {
+            libraryRepository.delete(library);
+
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
 
 }

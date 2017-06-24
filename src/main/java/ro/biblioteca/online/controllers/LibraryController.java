@@ -192,4 +192,29 @@ public class LibraryController {
         return borrowService.searchBookBorrow(firstName, lastName, startDate, endDate, bookId);
     }
 
+
+    @RequestMapping(value = "/library/add/category", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addCategory(@RequestBody Category category) {
+        return categoryService.saveCategory(category);
+    }
+
+    @RequestMapping(value = "/library/update/account", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updateAccount(@RequestBody Library library) {
+        return libraryService.updateLibrary(library);
+    }
+
+    @RequestMapping(value = "/library/update/password", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean updatePassword(@RequestBody ChangePassword changePassword) {
+        return libraryService.updatePassword(changePassword.getNewPassword(), changePassword.getOldPassword());
+    }
+
+    @RequestMapping(value = "/library/delete/account", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean deleteAccount(@RequestBody String password) {
+        return libraryService.deleteAccount(password);
+    }
+
 }

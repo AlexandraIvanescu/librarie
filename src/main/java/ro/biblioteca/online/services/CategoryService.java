@@ -32,4 +32,10 @@ public class CategoryService {
 
     }
 
+    public boolean saveCategory(Category category) {
+        repository.saveAndFlush(category);
+
+        return true;
+    }
+
 }

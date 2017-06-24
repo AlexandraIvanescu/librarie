@@ -1,0 +1,38 @@
+<div>
+    <div role="dialog" layout="column" layout-align="center center">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Adaugati o categorie noua</h3>
+            </div>
+        </md-toolbar>
+
+        <div class="new-post-container">
+            <form role="form" name="categoryForm" ng-submit="saveCategory()">
+
+                <div layout="row">
+                    <md-input-container class="md-block new-book-fields">
+                        <md-icon md-svg-icon="images/folder.svg"></md-icon>
+                        <label for="name">Nume categori</label>
+                        <input id="name" required name="name" ng-model="category.name"
+                               minlength="3" maxlength="30" ng-pattern="/^[A-Z][-a-zA-Z]+$/">
+                        <div ng-messages="categoryForm.name.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Introduceti un nume valid !
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" class="dialog-button">
+                    <md-button class="md-fab circle-button close-button" aria-label="Eat cake" ng-click="closeDialog()">
+                        <md-icon md-svg-src="images/error.svg"></md-icon>
+                    </md-button>
+                    <md-button type="submit" class="md-fab circle-button confirm-button" aria-label="Eat cake">
+                        <md-icon md-svg-src="images/success.svg"></md-icon>
+                    </md-button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
