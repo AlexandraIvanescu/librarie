@@ -149,20 +149,14 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <md-icon md-svg-icon="images/key.svg"></md-icon>
                                 <label for="deletePassword">Parola</label>
-                                <input id="deletePassword" name="password" ng-model="library.password" type="password"
-                                       required
-                                       minlength="10" maxlength="30">
-                                <div ng-messages="userForm.password.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                        Parola trebuie sa fie intre 10 si 30 de caractere.
-                                    </div>
-                                </div>
+                                <input id="deletePassword" name="password" ng-model="deletePassword" type="password"
+                                       required>
                             </md-input-container>
                         </div>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="center">
-                    <md-button aria-label="Eat cake" class="md-warn">
+                    <md-button aria-label="Eat cake" class="md-warn" ng-click="deleteAccount()">
                         <md-icon md-svg-src="images/delete.svg"></md-icon>
                         <span>Sterge</span>
                     </md-button>

@@ -211,4 +211,10 @@ public class LibraryController {
         return libraryService.updatePassword(changePassword.getNewPassword(), changePassword.getOldPassword());
     }
 
+    @RequestMapping(value = "/library/delete/account", method = RequestMethod.DELETE)
+    @ResponseBody
+    public boolean deleteAccount(@RequestBody String password) {
+        return libraryService.deleteAccount(password);
+    }
+
 }

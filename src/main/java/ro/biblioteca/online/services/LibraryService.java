@@ -61,12 +61,26 @@ public class LibraryService {
 
             libraryRepository.saveAndFlush(library);
 
-        } else{
+        } else {
             return false;
         }
 
 
         return true;
     }
+
+    public boolean deleteAccount(String password) {
+        Library library = libraryRepository.findByEmail(SecurityUtils.getCurrentLogin());
+
+        if (passwordEncoder.matches(password, library.getPassword())) {
+            libraryRepository.delete(library);
+
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
 
 }

@@ -4,8 +4,8 @@
 
 angular.module('libraryApp').component('settings', {
     templateUrl: 'settings/settings.template.html',
-    controller: ['$scope', '$location', '$http', '$mdPanel', '$rootScope', '$route',
-        function SubscribersController($scope, $location, $http, $mdPanel, $rootScope, $route) {
+    controller: ['$scope', '$location', '$http', '$mdPanel', '$rootScope', '$route', 'UserAuthSharedService',
+        function SubscribersController($scope, $location, $http, $mdPanel, $rootScope, $route, UserAuthSharedService) {
 
             function getCategory() {
 
@@ -98,6 +98,26 @@ angular.module('libraryApp').component('settings', {
                 $http(req);
 
             };
+
+            $scope.deleteAccount = function () {
+
+                var req = {
+                    method: 'DELETE',
+                    dataType: 'json',
+                    url: '/library/delete/account',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: $scope.deletePassword
+                };
+
+                $http(req).then(function (response) {
+                    $http.post('/library/logout', {}).finally(function () {
+                        UserAuthSharedService.logout();
+                    });
+                });
+
+            }
 
         }
     ]
