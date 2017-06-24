@@ -123,4 +123,15 @@ public class BookService {
         return books;
     }
 
+    public List<Integer> getBookStatistics() {
+        String currentUser = SecurityUtils.getCurrentLogin();
+        List<Integer> result = new ArrayList<>();
+
+        result.add(bookRepository.countBooksByLibraryEmail(currentUser));
+        result.add(bookRepository.countBooksBorrowed(currentUser));
+        result.add(bookRepository.countBooksLate(currentUser));
+
+        return result;
+    }
+
 }

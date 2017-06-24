@@ -44,4 +44,19 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "ORDER BY b.title")
     List<Book> findBooksByLibraryEmailAndNotBorrowed(String email);
 
+    @Query("SELECT COUNT(b) from Book b WHERE b.library.email = ?1")
+    int countBooksByLibraryEmail(String email);
+
+    @Query("SELECT COUNT(b) from Book b " +
+            "WHERE b.library.email = ?1 " +
+            "AND b.id IN (SELECT br.bookId FROM Borrow br WHERE br.isBorrowed = true)")
+    int countBooksBorrowed(String email);
+
+    @Query("SELECT COUNT(b) from Book b " +
+            "WHERE b.library.email = ?1 " +
+            "AND b.id IN   (SELECT br.bookId FROM Borrow br " +
+            "               WHERE br.isBorrowed = true " +
+            "               AND br.endDate <= CURDATE())")
+    int countBooksLate(String email);
+
 }
