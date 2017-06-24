@@ -25,7 +25,8 @@
                             <span class="md-headline">Carti</span>
                         </div>
                         <div style="max-width: 280px; text-align: center;">
-                            <canvas id="pie" class="chart chart-pie" chart-data="data_book" chart-labels="labels_book"
+                            <canvas id="book_pie" class="chart chart-pie" chart-data="data_book"
+                                    chart-labels="labels_book"
                                     chart-options="options">
                             </canvas>
                         </div>
@@ -41,7 +42,7 @@
                             <span class="md-headline">Abonati</span>
                         </div>
                         <div style="max-width: 280px; text-align: center;">
-                            <canvas id="pie" class="chart chart-pie" chart-data="data_subscriber"
+                            <canvas id="subscriber_pie" class="chart chart-pie" chart-data="data_subscriber"
                                     chart-labels="labels_subscriber"
                                     chart-options="options">
                             </canvas>
@@ -58,17 +59,17 @@
                             <span class="md-headline">Scurtaturi</span>
                         </div>
                         <div>
-                            <md-button md-no-ink class="md-primary">
+                            <md-button md-no-ink class="md-primary" ng-click="newBook()">
                                 <md-icon md-svg-icon="images/agenda.svg"></md-icon>
                                 Adauga carte
                             </md-button>
                             <br>
-                            <md-button md-no-ink class="md-primary">
+                            <md-button md-no-ink class="md-primary" ng-click="newSubscriber()">
                                 <md-icon md-svg-icon="images/users_2.svg"></md-icon>
                                 Adauga abonat
                             </md-button>
                             <br>
-                            <md-button md-no-ink class="md-primary">
+                            <md-button md-no-ink class="md-primary" ng-click="newCategory()">
                                 <md-icon md-svg-icon="images/folder.svg"></md-icon>
                                 Adauga categorie
                             </md-button>
