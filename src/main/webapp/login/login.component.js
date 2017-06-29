@@ -36,6 +36,7 @@ angular.module('libraryApp').component('login', {
 
                         if (response.data.isCreated) {
                             $rootScope.isCreated = true;
+                            $scope.isCreated = true;
                         } else {
                             $scope.error = true;
                             $scope.errorMessage = $scope.library.email + " exista deja !";

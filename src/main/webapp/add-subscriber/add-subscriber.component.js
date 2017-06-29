@@ -22,6 +22,8 @@ angular.module('libraryApp').component('addSubscriber', {
 
             var updateSubscriber = function () {
 
+                $scope.subscriber.image = $scope.subscriberPicture.name;
+
                 var req = {
                     method: 'POST',
                     dataType: 'json',
@@ -33,7 +35,22 @@ angular.module('libraryApp').component('addSubscriber', {
                 };
 
                 $http(req).then(function () {
-                    closePoPup();
+
+                    $http({
+                        method: 'POST',
+                        url: "/library/add/subscriber/picture",
+                        headers: {'Content-Type': undefined},
+                        data: {picture: $scope.subscriberPicture},
+                        transformRequest: function (data) {
+                            var formData = new FormData();
+
+                            formData.append("picture", data.picture);
+
+                            return formData;
+                        }
+                    }).then(function () {
+                        closePoPup();
+                    });
                 });
 
             };
