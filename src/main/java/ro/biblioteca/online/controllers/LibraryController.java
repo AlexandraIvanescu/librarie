@@ -171,6 +171,12 @@ public class LibraryController {
         return borrowService.searchBorrow(title, author, startDate, endDate);
     }
 
+    @RequestMapping(path = "/library/return/borrow", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean returnBorrow(@RequestBody Borrow borrow) {
+        return borrowService.returnBorrow(borrow);
+    }
+
     @RequestMapping(path = "/library/has/borrow", params = {"subscriberId"})
     @ResponseBody
     public boolean hasBorrow(@RequestParam(value = "subscriberId") int subscriberId) {

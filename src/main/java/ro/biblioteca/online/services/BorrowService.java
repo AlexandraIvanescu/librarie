@@ -204,4 +204,12 @@ public class BorrowService {
         return null;
     }
 
+
+    public boolean returnBorrow(Borrow borrow) {
+        borrowRepository.returnBorrowed(borrow.getId());
+
+
+        return true;
+    }
+
 }

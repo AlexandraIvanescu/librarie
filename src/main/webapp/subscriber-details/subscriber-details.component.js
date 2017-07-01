@@ -4,8 +4,8 @@
 
 angular.module('libraryApp').component('subscriberDetails', {
     templateUrl: 'subscriber-details/subscriber-details.tempalte.html',
-    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope', 'DateToStringService',
-        function SubscriberDetailsController($mdPanel, $rootScope, $http, $location, $scope, DateToStringService) {
+    controller: ['$mdPanel', '$rootScope', '$http', '$location', '$scope', 'DateToStringService', '$route',
+        function SubscriberDetailsController($mdPanel, $rootScope, $http, $location, $scope, DateToStringService, $route) {
 
             var path = $location.path().split("/");
             var subscriberId = path[path.length - 1];
@@ -263,6 +263,23 @@ angular.module('libraryApp').component('subscriberDetails', {
                 });
 
             };
+
+            $scope.returnBorrow = function (borrow) {
+                var req = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/library/return/borrow',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    data: borrow
+                };
+
+                $http(req).then(function (response) {
+                    $route.reload();
+                });
+
+            }
 
         }]
 });

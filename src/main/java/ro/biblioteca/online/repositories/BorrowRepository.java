@@ -25,6 +25,11 @@ public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
     @Query("UPDATE Borrow b SET b.endDate =:endDate WHERE b.id =:id")
     void updateEndDate(@Param("endDate") Date endDate, @Param("id") Integer id);
 
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query("UPDATE Borrow b SET b.isBorrowed = false WHERE b.id =:id")
+    void returnBorrowed(@Param("id") Integer id);
+
     @Query("SELECT br FROM Borrow br " +
             "WHERE br.startDate >= ?4 " +
             "AND br.endDate <= ?5 " +
