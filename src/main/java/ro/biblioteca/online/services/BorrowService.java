@@ -172,13 +172,13 @@ public class BorrowService {
             Date startDate;
             Date endDate;
 
-            if (sStartDate.equals("")) {
+            if (sStartDate.equals("") || sStartDate.equals("0NaN-0NaN-NaN")) {
                 startDate = format.parse("10-10-1930");
             } else {
                 startDate = format.parse(sStartDate);
             }
 
-            if (sEndDate.equals("")) {
+            if (sEndDate.equals("") || sEndDate.equals("0NaN-0NaN-NaN")) {
                 endDate = format.parse("10-10-2030");
             } else {
                 endDate = format.parse(sEndDate);

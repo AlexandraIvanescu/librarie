@@ -35,8 +35,8 @@ public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
             "AND br.endDate <= ?5 " +
             "AND br.bookId IN ( SELECT b.id FROM Book b " +
             "                   WHERE b.library.email = ?1 " +
-            "                   AND LOWER(b.title) LIKE LOWER(CONCAT('%', ?2, '%')) " +
-            "                   AND LOWER(b.author) LIKE LOWER(CONCAT('%', ?3, '%')))")
+            "                   AND LOWER(b.title) LIKE LOWER(CONCAT(?2, '%')) " +
+            "                   AND LOWER(b.author) LIKE LOWER(CONCAT(?3, '%')))")
     List<Borrow> findBorrowsByLibraryEmailAndTitleAndAuthor(String email, String title, String author, Date startDate, Date endDate);
 
 
@@ -54,8 +54,8 @@ public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
     @Query("SELECT br FROM Borrow br JOIN FETCH br.subscriber " +
             "WHERE br.startDate >= ?3 " +
             "AND br.endDate <= ?4 " +
-            "AND LOWER(br.subscriber.firstName) LIKE LOWER(CONCAT('%', ?1, '%')) " +
-            "AND LOWER(br.subscriber.lastName) LIKE LOWER(CONCAT('%', ?2, '%')) " +
+            "AND LOWER(br.subscriber.firstName) LIKE LOWER(CONCAT(?1, '%')) " +
+            "AND LOWER(br.subscriber.lastName) LIKE LOWER(CONCAT(?2, '%')) " +
             "AND br.bookId = ?5")
     List<Borrow> findBorrowsByStartDateAndEndDateAndFirstNameAndLastName(String firstName, String lastName, Date startDate, Date endDate, int bookId);
 
