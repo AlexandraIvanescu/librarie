@@ -242,7 +242,8 @@ angular.module('libraryApp').component('subscriberDetails', {
                     endDate = DateToStringService.dateToString(new Date($scope.endDate));
                 }
 
-                var url = '/library/search/borrow?title=' + $scope.title + '&author=' + $scope.author + '&startDate=' + startDate + '&endDate=' + endDate;
+                var url = '/library/search/borrow?title=' + $scope.title + '&author=' + $scope.author + '&startDate=' + startDate +
+                    '&endDate=' + endDate + '&subscriberId=' + subscriberId;
 
                 var req = {
                     method: 'GET',

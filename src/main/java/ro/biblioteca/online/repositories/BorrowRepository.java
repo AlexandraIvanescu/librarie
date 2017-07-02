@@ -33,11 +33,12 @@ public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
     @Query("SELECT br FROM Borrow br " +
             "WHERE br.startDate >= ?4 " +
             "AND br.endDate <= ?5 " +
+            "AND br.subscriber.id = ?6 " +
             "AND br.bookId IN ( SELECT b.id FROM Book b " +
             "                   WHERE b.library.email = ?1 " +
             "                   AND LOWER(b.title) LIKE LOWER(CONCAT(?2, '%')) " +
             "                   AND LOWER(b.author) LIKE LOWER(CONCAT(?3, '%')))")
-    List<Borrow> findBorrowsByLibraryEmailAndTitleAndAuthor(String email, String title, String author, Date startDate, Date endDate);
+    List<Borrow> findBorrowsByLibraryEmailAndTitleAndAuthor(String email, String title, String author, Date startDate, Date endDate, Integer subscriberId);
 
 
     @Query("SELECT b from Borrow b " +
