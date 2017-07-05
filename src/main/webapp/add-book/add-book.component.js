@@ -27,6 +27,7 @@ angular.module('libraryApp').component('addBook', {
 
             var updateBook = function () {
                 $scope.book.category = $scope.categories[$scope.book.categoryIndex];
+                $scope.book.image = $scope.bookPicture.name;
 
                 var req = {
                     method: 'POST',
@@ -39,7 +40,21 @@ angular.module('libraryApp').component('addBook', {
                 };
 
                 $http(req).then(function () {
-                    closePoPup();
+                    $http({
+                        method: 'POST',
+                        url: "/library/add/picture",
+                        headers: {'Content-Type': undefined},
+                        data: {picture: $scope.bookPicture},
+                        transformRequest: function (data) {
+                            var formData = new FormData();
+
+                            formData.append("picture", data.picture);
+
+                            return formData;
+                        }
+                    }).then(function () {
+                        closePoPup();
+                    });
                 });
 
             };

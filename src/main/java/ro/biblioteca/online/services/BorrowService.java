@@ -94,7 +94,7 @@ public class BorrowService {
         return true;
     }
 
-    public List<BookBorrow> searchBorrow(String title, String author, String sStartDate, String sEndDate) {
+    public List<BookBorrow> searchBorrow(String title, String author, String sStartDate, String sEndDate, Integer subscriberId) {
 
         try {
 
@@ -102,19 +102,19 @@ public class BorrowService {
             Date startDate;
             Date endDate;
 
-            if (sStartDate.equals("")) {
+            if (sStartDate.equals("") || sStartDate.equals("0NaN-0NaN-NaN")) {
                 startDate = format.parse("10-10-1930");
             } else {
                 startDate = format.parse(sStartDate);
             }
 
-            if (sEndDate.equals("")) {
+            if (sEndDate.equals("") || sEndDate.equals("0NaN-0NaN-NaN")) {
                 endDate = format.parse("10-10-2030");
             } else {
                 endDate = format.parse(sEndDate);
             }
 
-            List<Borrow> borrows = borrowRepository.findBorrowsByLibraryEmailAndTitleAndAuthor(SecurityUtils.getCurrentLogin(), title, author, startDate, endDate);
+            List<Borrow> borrows = borrowRepository.findBorrowsByLibraryEmailAndTitleAndAuthor(SecurityUtils.getCurrentLogin(), title, author, startDate, endDate, subscriberId);
             List<BookBorrow> bookBorrows = new ArrayList<>();
 
             borrows.forEach(borrow -> {
@@ -172,13 +172,13 @@ public class BorrowService {
             Date startDate;
             Date endDate;
 
-            if (sStartDate.equals("")) {
+            if (sStartDate.equals("") || sStartDate.equals("0NaN-0NaN-NaN")) {
                 startDate = format.parse("10-10-1930");
             } else {
                 startDate = format.parse(sStartDate);
             }
 
-            if (sEndDate.equals("")) {
+            if (sEndDate.equals("") || sEndDate.equals("0NaN-0NaN-NaN")) {
                 endDate = format.parse("10-10-2030");
             } else {
                 endDate = format.parse(sEndDate);
@@ -202,6 +202,14 @@ public class BorrowService {
         }
 
         return null;
+    }
+
+
+    public boolean returnBorrow(Borrow borrow) {
+        borrowRepository.returnBorrowed(borrow.getId());
+
+
+        return true;
     }
 
 }

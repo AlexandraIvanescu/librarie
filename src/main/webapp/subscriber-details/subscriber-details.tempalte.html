@@ -52,14 +52,14 @@
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/agenda.svg"></md-icon>
                                 <label for="title">Titlu</label>
-                                <input id="title" name="title" ng-model="title" minlength="3" maxlength="30">
+                                <input id="title" name="title" ng-model="title" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
                             <md-input-container class="md-block">
                                 <md-icon md-svg-icon="images/shakespeare.svg"></md-icon>
                                 <label for="author">Autor</label>
-                                <input id="author" name="author" ng-model="author" minlength="3" maxlength="30">
+                                <input id="author" name="author" ng-model="author" maxlength="30">
                             </md-input-container>
                         </div>
                         <div>
@@ -69,11 +69,6 @@
                                 <label>Data de inceput</label>
                                 <md-datepicker required name="releaseDate" ng-model="startDate"
                                                md-max-date="maxDate"></md-datepicker>
-                                <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
-                                    <div ng-message-exp="['required', 'maxdate']">
-                                        Introduceti o data valida !
-                                    </div>
-                                </div>
                             </md-input-container>
                         </div>
                         <div>
@@ -83,11 +78,6 @@
                                 <label>Data de sfarsit</label>
                                 <md-datepicker required name="releaseDate" ng-model="endDate"
                                                md-max-date="maxDate"></md-datepicker>
-                                <div class="validation-messages" ng-messages="bookForm.releaseDate.$error">
-                                    <div ng-message-exp="['required', 'maxdate']">
-                                        Introduceti o data valida !
-                                    </div>
-                                </div>
                             </md-input-container>
                         </div>
                         <div>
@@ -120,6 +110,11 @@
                                 <td>{{borrow.startDate}}</td>
                                 <td>{{borrow.endDate}}</td>
                                 <td ng-if="borrow.borrow.borrowed && currentDate <= borrow.borrow.endDate">
+                                    <md-button aria-label="Eat cake" class="md-primary"
+                                               ng-click="returnBorrow(borrow.borrow)">
+                                        <md-icon md-svg-src="images/back.svg"></md-icon>
+                                        <span>Returnat</span>
+                                    </md-button>
                                     <md-button type="submit" aria-label="Eat cake" class="md-primary"
                                                ng-click="extended(borrow.borrow)">
                                         <md-icon md-svg-src="images/refresh.svg"></md-icon>

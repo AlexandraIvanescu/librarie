@@ -163,12 +163,19 @@ public class LibraryController {
     }
 
 
-    @RequestMapping(path = "/library/search/borrow", params = {"title", "author", "startDate", "endDate"})
+    @RequestMapping(path = "/library/search/borrow", params = {"title", "author", "startDate", "endDate", "subscriberId"})
     @ResponseBody
     public List<BookBorrow> getBorrowSearch(@RequestParam(value = "title") String title, @RequestParam(value = "author") String author,
-                                            @RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate) {
+                                            @RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate,
+                                            @RequestParam(value = "subscriberId") Integer subscriberId) {
 
-        return borrowService.searchBorrow(title, author, startDate, endDate);
+        return borrowService.searchBorrow(title, author, startDate, endDate, subscriberId);
+    }
+
+    @RequestMapping(path = "/library/return/borrow", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean returnBorrow(@RequestBody Borrow borrow) {
+        return borrowService.returnBorrow(borrow);
     }
 
     @RequestMapping(path = "/library/has/borrow", params = {"subscriberId"})
